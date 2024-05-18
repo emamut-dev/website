@@ -4,17 +4,19 @@ import Card from '../components/Card.astro';
 import Header from '../components/Header.astro'
 
 import bgImage from '../images/desktop-banner.png'
+import { features } from '@data'
 ---
 
 <Layout title="emamut">
 	<main class="mb-5">
 		<Header backgroundImg={`url(${bgImage.src})`} />
 		<div class="container">
-			<div class="row row-cols-2 row-cols-md-4 g-4 mt-5">
-				<Card title='Web Development' body='Maecenas tempus tellus eget condimentum' icon='envelope' />
-				<Card title='E-commerce' body='Maecenas tempus tellus eget condimentum' icon='envelope' />
-				<Card title='Mobile App' body='Maecenas tempus tellus eget condimentum' icon='envelope' />
-				<Card title='SEO' body='Maecenas tempus tellus eget condimentum' icon='envelope' />
+			<div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+			{features.map(({title, body, icon}) => {
+				return (
+					<Card title={title} body={body} icon={icon} />
+				)
+			})}
 			</div>
 		</div>
 	</main>

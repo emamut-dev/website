@@ -1,0 +1,19 @@
+{
+  "features": [
+    {
+      "title": "Web Development",
+      "body": "We'll build your site from scratch",
+      "icon": "globe-americas"
+    },
+    {
+      "title": "E-commerce",
+      "body": "We'll build and launch your online store",
+      "icon": "tag"
+    },
+    {
+      "title": "Mobile App",
+      "body": "We'll develop your mobile app",
+      "icon": "phone"
+    }
+  ]
+}
