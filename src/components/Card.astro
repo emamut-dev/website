@@ -11,8 +11,8 @@ const { title, body, icon } = Astro.props;
 <div class="col">
 	<div class="card" style="width: 18rem;">
 		<div class="card-body">
-			<i class={`icon bi-${icon}`}></i>
-			<h5 class="card-title">{title}</h5>
+			<i class={`icon bi-${icon}`} style="font-size: 2rem; color: #cdcdcd"></i>
+			<h5 class="card-title mt-1">{title}</h5>
 			<p class="card-text">{body}</p>
 		</div>
 	</div>
