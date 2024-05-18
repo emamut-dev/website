@@ -2,14 +2,16 @@
 interface Props {
 	title: string;
 	body: string;
+	icon: string
 }
 
-const { title, body } = Astro.props;
+const { title, body, icon } = Astro.props;
 ---
 
 <div class="col">
 	<div class="card" style="width: 18rem;">
 		<div class="card-body">
+			<i class={`icon bi-${icon}`}></i>
 			<h5 class="card-title">{title}</h5>
 			<p class="card-text">{body}</p>
 		</div>
