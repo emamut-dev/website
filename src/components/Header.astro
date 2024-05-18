@@ -1,0 +1,22 @@
+---
+interface Props {
+	backgroundImg: string;
+}
+
+const {backgroundImg} = Astro.props
+---
+
+<div class="container-fluid px-0">
+  <header></header>
+</div>
+
+<style define:vars={{ backgroundImg }}>
+  header {
+    width: 100vw;
+    min-height: 550px;
+    background-image: var(--backgroundImg);
+    background-size: contain;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+</style>
