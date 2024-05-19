@@ -1,0 +1,24 @@
+---
+interface Props {
+	title: string;
+	image: string;
+	link: string
+}
+
+const { title, image, link } = Astro.props;
+
+import { Image } from "astro:assets"
+
+const cardImage = (await import(`../images/portfolio/${image}.png`)).default;
+---
+
+<div class="col">
+  <div class="card">
+    <Image src={cardImage} alt={title} class="img-fluid" />
+    <div class="card-body">
+      <a href={link} target="_blank" class="link-dark link-underline link-underline-opacity-0 link-underline-opacity-75-hover">
+        <h5 class="card-title">{title}</h5>
+      </a>
+    </div>
+  </div>
+</div>
