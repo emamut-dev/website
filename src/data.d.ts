@@ -5,3 +5,9 @@ export interface features {
   body: string;
   icon: string;
 }
+
+export interface portfolio {
+  title: string;
+  image: string;
+  link: string;
+}
