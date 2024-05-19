@@ -2,22 +2,35 @@
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import Header from '../components/Header.astro'
+import CardImage from '../components/CardImage.astro'
 
+import { features, portfolio } from '@data'
 import bgImage from '../images/desktop-banner.png'
-import { features } from '@data'
 ---
 
 <Layout title="emamut">
 	<main class="mb-5">
 		<Header backgroundImg={`url(${bgImage.src})`} />
 		<div class="container">
-			<div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
-			{features.map(({title, body, icon}) => {
-				return (
-					<Card title={title} body={body} icon={icon} />
-				)
-			})}
-			</div>
+			<section class="pt-5">
+				<div class="row row-cols-1 row-cols-md-3 g-4">
+				{features.map(({title, body, icon}) => {
+					return (
+						<Card title={title} body={body} icon={icon} />
+					)
+				})}
+				</div>
+			</section>
+			<section class="mt-5">
+				<h2>Our Work</h2>
+				<div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
+					{portfolio.map(({title, image, link}) => {
+						return (
+							<CardImage image={image} title={title} link={link} />
+						)
+					})}
+				</div>
+			</section>
 		</div>
 	</main>
 </Layout>
