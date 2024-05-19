@@ -11,7 +11,7 @@ import { features } from '@data'
 	<main class="mb-5">
 		<Header backgroundImg={`url(${bgImage.src})`} />
 		<div class="container">
-			<div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+			<div class="row row-cols-1 row-cols-md-3 g-4 pt-5">
 			{features.map(({title, body, icon}) => {
 				return (
 					<Card title={title} body={body} icon={icon} />

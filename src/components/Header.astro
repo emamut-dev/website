@@ -12,12 +12,23 @@ const {backgroundImg} = Astro.props
 
 <style define:vars={{ backgroundImg }}>
   header {
-    width: 100vw;
-    min-height: 45vh;
+    height: 60vh;
     background-image: var(--backgroundImg);
-    background-size: cover;
-    /* background-attachment: fixed; */
+    background-position: top center;
     background-repeat: no-repeat;
-    background-position: center;
+    background-attachment: fixed;
+    background-size: contain;
+  }
+
+  @media only screen and (max-width: 576px) {
+    header {
+      height: 20vh;
+    }
+  }
+
+  @media only screen and (min-width: 576px) and (max-width: 768px) {
+    header {
+      height: 30vh;
+    }
   }
 </style>
