@@ -2,8 +2,10 @@
 interface Props {
 	title: string;
 	body: string;
-	icon: string
+	icon: string;
 }
+
+import Icon from '../components/Icon.astro'
 
 const { title, body, icon } = Astro.props;
 ---
@@ -11,7 +13,7 @@ const { title, body, icon } = Astro.props;
 <div class="col">
 	<div class="card">
 		<div class="card-body">
-			<i class={`icon bi-${icon} text-secondary`} style="font-size: 2rem;"></i>
+			<Icon icon={icon} classText='text-secondary' styleText='font-size: 2rem;' />
 			<h5 class="card-title mt-1">{title}</h5>
 			<p class="card-text">{body}</p>
 		</div>

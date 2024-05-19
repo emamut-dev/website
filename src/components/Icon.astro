@@ -1,0 +1,11 @@
+---
+interface Props {
+  icon: string;
+  classText: string;
+  styleText: string;
+}
+
+const { icon, classText, styleText } = Astro.props
+---
+
+<i class={`icon bi-${icon} ${classText}`} style={styleText}></i>
