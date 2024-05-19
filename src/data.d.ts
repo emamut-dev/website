@@ -11,3 +11,9 @@ export interface portfolio {
   image: string;
   link: string;
 }
+
+export interface socialNetworks {
+  icon: string;
+  username: string;
+  link: string;
+}

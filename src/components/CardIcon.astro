@@ -1,0 +1,22 @@
+---
+import Icon from '../components/Icon.astro'
+
+interface Props {
+	icon: string;
+	link: string
+	username: string;
+}
+
+const { icon, username, link } = Astro.props;
+---
+
+<div class="col">
+  <div class="card">
+    <div class="card-body text-center">
+      <Icon icon={icon} classText='text-secondary' styleText='font-size: 3rem' />
+    </div>
+    <div class="card-footer text-center">
+      <a href={link} target="_blank">{username}</a>
+    </div>
+  </div>
+</div>

@@ -37,5 +37,27 @@
       "link": "https://mdagenciaweb.com/",
       "image": "md-agencia"
     }
+  ],
+  "socialNetworks": [
+    {
+      "icon": "github",
+      "link": "https://github.com/orgs/emamut-dev/",
+      "username": "emamut-dev"
+    },
+    {
+      "icon": "linkedin",
+      "link": "https://www.linkedin.com/company/emamut/",
+      "username": "emamut"
+    },
+    {
+      "icon": "twitter-x",
+      "link": "https://x.com/emamutDev",
+      "username": "emamutDev"
+    },
+    {
+      "icon": "facebook",
+      "link": "https://www.facebook.com/emamut.io",
+      "username": "emamut.io"
+    }
   ]
 }
