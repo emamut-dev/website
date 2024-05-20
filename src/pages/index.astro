@@ -5,13 +5,14 @@ import Header from '../components/Header.astro'
 import Form from '../components/Form.astro'
 import CardImage from '../components/CardImage.astro'
 import CardIcon from '../components/CardIcon.astro'
+import Footer from '../components/Footer.astro'
 
 import { features, portfolio, socialNetworks } from '@data'
 import bgImage from '../images/desktop-banner.png'
 ---
 
 <Layout title="emamut">
-	<main class="mb-5">
+	<main>
 		<Header backgroundImg={`url(${bgImage.src})`} />
 		<div class="container">
 			<section class="pt-5">
@@ -39,8 +40,8 @@ import bgImage from '../images/desktop-banner.png'
 					<div class="col-md-6">
 						<Form />
 					</div>
-					<div class="col-md-6">
-						<div class="row row-cols-1 row-cols-md-2 g-4">
+					<div class="col-md-6 mt-3 mt-md-0">
+						<div class="row row-cols-2 justify-content-center g-4">
 							{socialNetworks.map(({icon, username, link}) => {
 								return (
 									<CardIcon icon={icon} link={link} username={username} />
@@ -51,5 +52,6 @@ import bgImage from '../images/desktop-banner.png'
 				</div>
 			</section>
 		</div>
+		<Footer />
 	</main>
 </Layout>
