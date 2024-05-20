@@ -1,18 +1,18 @@
 {
   "features": [
     {
-      "title": "Web Development",
-      "body": "We'll build your site from scratch",
+      "title": "Creamos tu Sitio Web",
+      "body": "Si estás buscando una página web que destaque en la era digital, has llegado al lugar correcto. Nuestro equipo de expertos está listo para llevar tu proyecto al siguiente nivel.",
       "icon": "globe-americas"
     },
     {
       "title": "E-commerce",
-      "body": "We'll build and launch your online store",
+      "body": "Si estás listo para expandir tu alcance y abrir tu negocio al mundo, nosotros somos tu mejor aliado. Con soluciones personalizadas aseguramos que tu transición al comercio electrónico sea exitosa y sin complicaciones.",
       "icon": "tag"
     },
     {
-      "title": "Education",
-      "body": "We'll develop your mobile app",
+      "title": "Educación",
+      "body": "En nuestra serie de charlas para emprendedores, exploramos las últimas tendencias y estrategias de éxito para negocios emergentes.",
       "icon": "book"
     }
   ],
