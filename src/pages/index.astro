@@ -6,6 +6,7 @@ import Form from '../components/Form.astro'
 import CardImage from '../components/CardImage.astro'
 import CardIcon from '../components/CardIcon.astro'
 import Footer from '../components/Footer.astro'
+import Icon from '../components/Icon.astro'
 
 import { features, portfolio, socialNetworks } from '@data'
 import bgImage from '../images/desktop-banner.png'
@@ -25,8 +26,9 @@ import bgImage from '../images/desktop-banner.png'
 				</div>
 			</section>
 			<section class="mt-5">
-				<h2>Our Work</h2>
-				<div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
+				<h2>Descubre la Creatividad que Impulsa el Éxito</h2>
+				<p>En emamut, nos enorgullecemos de transformar ideas en realidades tangibles.</p>
+				<div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
 					{portfolio.map(({title, image, link}) => {
 						return (
 							<CardImage image={image} title={title} link={link} />
@@ -37,9 +39,12 @@ import bgImage from '../images/desktop-banner.png'
 				</div>
 			</section>
 			<section class="mt-5">
-				<h2>Contact Us</h2>
-				<div class="row mt-3">
+				<h2>Conecta con Nosotros y Emprende el Camino al Éxito</h2>
+				<div class="row mt-4">
 					<div class="col-md-6">
+						<h5 class="mb-4">
+							<Icon icon="telephone" classText='' styleText='' /> Celular: <a  class="link-dark link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="https://wa.me/573160414585" target="_blank">+57 316 041 45 85</a>
+						</h3>
 						<Form />
 					</div>
 					<div class="col-md-6 mt-3 mt-md-0">
