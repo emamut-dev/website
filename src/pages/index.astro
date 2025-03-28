@@ -47,11 +47,11 @@ import bgImage from '../images/desktop-banner.png'
 						</h3>
 						<Form />
 					</div>
-					<div class="col-md-6 mt-3 mt-md-0">
-						<div class="row row-cols-2 justify-content-center g-4">
-							{socialNetworks.map(({icon, username, link}) => {
+					<div class="col-md-6 mt-3 mt-md-5">
+						<div class="row row-cols-3 justify-content-center g-4">
+							{socialNetworks.map(({icon, link}) => {
 								return (
-									<CardIcon icon={icon} link={link} username={username} />
+									<CardIcon icon={icon} link={link} />
 								)
 							})}
 						</div>
