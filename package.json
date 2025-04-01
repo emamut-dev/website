@@ -13,7 +13,6 @@
     "@astrojs/partytown": "^2.1.4",
     "astro": "^4.16.18",
     "bootstrap": "^5.3.3",
-    "bootstrap-icons": "^1.11.3",
     "sharp": "^0.33.5"
   },
   "pnpm": {

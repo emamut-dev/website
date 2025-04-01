@@ -1,10 +1,10 @@
 ---
-import Icon from '../components/Icon.astro'
-
 interface Props {
 	icon: string;
 	link: string
 }
+
+import { Image } from 'astro:assets';
 
 const { icon, link } = Astro.props;
 ---
@@ -13,7 +13,7 @@ const { icon, link } = Astro.props;
   <div class="card">
     <a href={link} target="_blank">
       <div class="card-body text-center">
-        <Icon icon={icon} classText='text-secondary' styleText='font-size: 3rem' />
+        <Image src={icon} alt="Icon" class="card-icon" width={70} height={70} />
       </div>
     </a>
   </div>
