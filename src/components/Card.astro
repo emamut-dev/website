@@ -1,21 +1,21 @@
 ---
-interface Props {
-	title: string;
-	body: string;
-	icon: string;
-}
+import { Image } from 'astro:assets';
 
-import Icon from '../components/Icon.astro'
+interface Props {
+  title: string;
+  body: string;
+  icon: string;
+}
 
 const { title, body, icon } = Astro.props;
 ---
 
 <div class="col">
-	<div class="card">
-		<div class="card-body">
-			<Icon icon={icon} classText='text-secondary' styleText='font-size: 2rem;' />
-			<h5 class="card-title mt-1">{title}</h5>
-			<p class="card-text">{body}</p>
-		</div>
-	</div>
+  <div class="card">
+    <div class="card-body">
+      <Image src={icon} alt={title} class="card-icon" width={30} height={30} />
+      <h5 class="card-title mt-1">{title}</h5>
+      <p class="card-text">{body}</p>
+    </div>
+  </div>
 </div>

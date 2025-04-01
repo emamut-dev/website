@@ -1,14 +1,15 @@
 ---
-import Icon from "./Icon.astro";
+import { Image } from "astro:assets"
+import sendIcon from '/src/images/icons/send.svg';
 ---
 
 <form name="contact" data-netlify="true">
   <div class="form-floating mb-3">
-    <input type="text" name="name" class="form-control" placeholder="Juan Vergara" autocomplete="off" id="name" />
+    <input type="text" name="name" id="name" class="form-control" placeholder="Juan Vergara" autocomplete="off" />
     <label for="name">Nombres completos</label>
   </div>
   <div class="form-floating mb-3">
-    <input type="email" name="email" class="form-control" placeholder="juanvergara@gmail.com" autocomplete="off" required />
+    <input type="email" name="email" id="email" class="form-control" placeholder="juanvergara@gmail.com" autocomplete="off" required />
     <label for="email">Email<span style="color: red">*</span></label>
   </div>
   <div class="form-floating mb-3">
@@ -17,7 +18,8 @@ import Icon from "./Icon.astro";
   </div>
   <div class="d-grid gap-2">
     <button class="btn btn-outline-secondary" type="submit">
-      Enviar <Icon icon="send" classText='text-secondary' styleText='font-size: 1rem' />
+      Enviar
+      <Image src={sendIcon} alt="Send" width={20} height={20} class="card-icon" />
     </button>
   </div>
 </form>
