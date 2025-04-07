@@ -12,21 +12,20 @@ import Footer from '../components/Footer.astro'
 import { features, portfolio, socialNetworks } from '@data'
 
 import bgImage from '../images/desktop-banner.png'
-import whatsapp from '../images/icons/whatsapp.svg'
+// import whatsapp from '../images/icons/whatsapp.svg'
 
-const iconBasePath = '../images/icons/'
+// const iconBasePath = '../images/icons/'
 ---
 
 <Layout title="emamut">
   <main>
     <Header backgroundImg={`url(${bgImage.src})`} />
     <div class="container">
-      <section class="pt-5">
+      <!-- <section class="pt-5">
         <div class="row row-cols-1 row-cols-md-3 g-4">
         {features.map(({title, body, icon}) => {
-          const iconPath = `${iconBasePath}${icon}.svg`
           return (
-            <Card title={title} body={body} icon={iconPath} />
+            <Card title={title} body={body} icon={icon} />
           )
         })}
         </div>
@@ -41,7 +40,7 @@ const iconBasePath = '../images/icons/'
             )
           })}
 
-          <!-- <CardImage image='your-site' title='' link='' /> -->
+          <CardImage image='your-site' title='' link='' />
         </div>
       </section>
       <section class="mt-5">
@@ -56,9 +55,8 @@ const iconBasePath = '../images/icons/'
           <div class="col-md-6 d-flex align-items-center mt-3 mt-md-5">
             <div class="row row-cols-3 g-4">
               {socialNetworks.map(({icon, link}) => {
-								const iconPath = `${iconBasePath}${icon}.svg`
                 return (
-                  <CardIcon icon={iconPath} link={link} />
+                  <CardIcon icon={icon} link={link} />
                 )
               })}
             </div>
@@ -66,6 +64,6 @@ const iconBasePath = '../images/icons/'
         </div>
       </section>
     </div>
-    <Footer />
+    <Footer /> -->
   </main>
 </Layout>
