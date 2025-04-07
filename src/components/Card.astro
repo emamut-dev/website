@@ -1,6 +1,4 @@
 ---
-import { Image } from 'astro:assets';
-
 interface Props {
   title: string;
   body: string;
@@ -8,14 +6,12 @@ interface Props {
 }
 
 const { title, body, icon } = Astro.props;
-
-const iconPath = await import(`../images/icons/${icon}.svg`);
 ---
 
 <div class="col">
   <div class="card">
     <div class="card-body">
-      <Image src={iconPath} alt={title} class="card-icon" width={30} height={30} />
+      <i class={`fa-solid fa-${icon} fa-2x card-icon`}></i>
       <h5 class="card-title mt-1">{title}</h5>
       <p class="card-text">{body}</p>
     </div>

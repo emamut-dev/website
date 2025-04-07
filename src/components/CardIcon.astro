@@ -4,17 +4,14 @@ interface Props {
 	link: string
 }
 
-import { Image } from 'astro:assets';
-
 const { icon, link } = Astro.props;
-const iconPath = `../images/icons/${icon}.svg`;
 ---
 
 <div class="col">
   <div class="card">
     <a href={link} target="_blank">
       <div class="card-body text-center">
-        <Image src={iconPath} alt="Icon" class="card-icon" width={70} height={70} />
+        <i class={`fa-brands fa-${icon} fa-4x card-icon`}></i>
       </div>
     </a>
   </div>

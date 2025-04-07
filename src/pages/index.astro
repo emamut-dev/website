@@ -12,16 +12,13 @@ import Footer from '../components/Footer.astro'
 import { features, portfolio, socialNetworks } from '@data'
 
 import bgImage from '../images/desktop-banner.png'
-// import whatsapp from '../images/icons/whatsapp.svg'
-
-// const iconBasePath = '../images/icons/'
 ---
 
 <Layout title="emamut">
   <main>
     <Header backgroundImg={`url(${bgImage.src})`} />
     <div class="container">
-      <!-- <section class="pt-5">
+      <section class="pt-5">
         <div class="row row-cols-1 row-cols-md-3 g-4">
         {features.map(({title, body, icon}) => {
           return (
@@ -40,7 +37,7 @@ import bgImage from '../images/desktop-banner.png'
             )
           })}
 
-          <CardImage image='your-site' title='' link='' />
+          <!-- <CardImage image='your-site' title='' link='' /> -->
         </div>
       </section>
       <section class="mt-5">
@@ -48,8 +45,8 @@ import bgImage from '../images/desktop-banner.png'
         <div class="row mt-4">
           <div class="col-md-6">
             <h5 class="mb-4">
-              <Image src={whatsapp} width={30} height={30} alt='Whatsapp' /> Celular: <a  class="link-dark link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="https://wa.me/573003587382/?text=¡Hola%21%20Necesito%20m%C3%A1s%20informaci%C3%B3n" target="_blank">+57 300 358 73 82</a>
-            </h3>
+              <i class="fa-brands fa-whatsapp"></i> Celular: <a class="link-dark link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="https://wa.me/573003587382/?text=¡Hola%21%20Necesito%20m%C3%A1s%20informaci%C3%B3n" target="_blank">+57 300 358 73 82</a>
+            </h5>
             <Form />
           </div>
           <div class="col-md-6 d-flex align-items-center mt-3 mt-md-5">
@@ -64,6 +61,6 @@ import bgImage from '../images/desktop-banner.png'
         </div>
       </section>
     </div>
-    <Footer /> -->
+    <Footer />
   </main>
 </Layout>
