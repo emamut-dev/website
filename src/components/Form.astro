@@ -1,6 +1,4 @@
 ---
-import { Image } from "astro:assets"
-import sendIcon from '/src/images/icons/send.svg';
 ---
 
 <form name="contact" data-netlify="true">
@@ -19,7 +17,7 @@ import sendIcon from '/src/images/icons/send.svg';
   <div class="d-grid gap-2">
     <button class="btn btn-outline-secondary" type="submit">
       Enviar
-      <Image src={sendIcon} alt="Send" width={20} height={20} class="card-icon" />
+      <i class="fa-solid fa-paper-plane"></i>
     </button>
   </div>
 </form>

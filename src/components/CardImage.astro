@@ -7,8 +7,6 @@ interface Props {
 
 import { Image } from "astro:assets"
 
-import externalLink from '../images/icons/external-link.svg'
-
 const { title, image, link } = Astro.props;
 const cardImage = (await import(`../images/portfolio/${image}.png`)).default;
 ---
@@ -21,7 +19,7 @@ const cardImage = (await import(`../images/portfolio/${image}.png`)).default;
     <div class="card-body">
       { link !== '' && image !== '' &&
         <a href={link} target="_blank" class="link-dark link-underline link-underline-opacity-0 link-underline-opacity-75-hover">
-          <h5 class="card-title">{title} <Image src={externalLink} alt="Link" class="card-icon"/></h5>
+          <h5 class="card-title">{title} <i class="fa-solid fa-arrow-up-right-from-square fa-xs card-icon"></i></h5>
         </a>
       }
     </div>
