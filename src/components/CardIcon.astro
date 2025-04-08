@@ -1,15 +1,15 @@
 ---
 interface Props {
 	icon: string;
-	link: string
+	url: string
 }
 
-const { icon, link } = Astro.props;
+const { icon, url } = Astro.props;
 ---
 
 <div class="col">
   <div class="card">
-    <a href={link} target="_blank">
+    <a href={url} target="_blank">
       <div class="card-body text-center">
         <i class={`fa-brands fa-${icon} fa-4x card-icon`}></i>
       </div>

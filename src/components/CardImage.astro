@@ -8,13 +8,12 @@ interface Props {
 import { Image } from "astro:assets"
 
 const { title, image, link } = Astro.props;
-const cardImage = (await import(`../images/portfolio/${image}.png`)).default;
 ---
 
 <div class="col">
   <div class="card">
     <a href={link} target="_blank">
-      <Image src={cardImage} alt={title} class="img-fluid" />
+      <Image src={image} alt={title} class="img-fluid" inferSize={true} />
     </a>
     <div class="card-body">
       { link !== '' && image !== '' &&

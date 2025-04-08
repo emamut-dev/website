@@ -9,7 +9,11 @@ import CardImage from '../components/CardImage.astro'
 import CardIcon from '../components/CardIcon.astro'
 import Footer from '../components/Footer.astro'
 
-import { features, portfolio, socialNetworks } from '@data'
+import { getFeatures, getPortfolio, getSocialNetworks } from '../lib/datocms.js';
+
+const { allFeatures } = await getFeatures();
+const { allPortfolios } = await getPortfolio();
+const { allSocialNetworks } = await getSocialNetworks();
 
 import bgImage from '../images/desktop-banner.png'
 ---
@@ -20,7 +24,7 @@ import bgImage from '../images/desktop-banner.png'
     <div class="container">
       <section class="pt-5">
         <div class="row row-cols-1 row-cols-md-3 g-4">
-        {features.map(({title, body, icon}) => {
+        {allFeatures.map(({title, body, icon}) => {
           return (
             <Card title={title} body={body} icon={icon} />
           )
@@ -31,9 +35,9 @@ import bgImage from '../images/desktop-banner.png'
         <h2>Descubre la creatividad que impulsa el éxito</h2>
         <p>En emamut, nos enorgullecemos de transformar ideas en realidades tangibles.</p>
         <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
-          {portfolio.map(({title, image, link}) => {
+          {allPortfolios.map(({title, image, link}) => {
             return (
-              <CardImage image={image} title={title} link={link} />
+              <CardImage image={image.url} title={title} link={link} />
             )
           })}
 
@@ -51,9 +55,9 @@ import bgImage from '../images/desktop-banner.png'
           </div>
           <div class="col-md-6 d-flex align-items-center mt-3 mt-md-5">
             <div class="row row-cols-3 g-4">
-              {socialNetworks.map(({icon, link}) => {
+              {allSocialNetworks.map(({icon, url}) => {
                 return (
-                  <CardIcon icon={icon} link={link} />
+                  <CardIcon icon={icon} url={url} />
                 )
               })}
             </div>
