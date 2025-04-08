@@ -9,8 +9,6 @@ import CardImage from '../components/CardImage.astro'
 import CardIcon from '../components/CardIcon.astro'
 import Footer from '../components/Footer.astro'
 
-import { features, portfolio, socialNetworks } from '@data'
-
 import { getFeatures, getPortfolio, getSocialNetworks } from '../lib/datocms.js';
 
 const { allFeatures } = await getFeatures();
