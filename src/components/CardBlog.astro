@@ -1,0 +1,47 @@
+---
+interface Props {
+  title: string;
+  slug: string;
+  content: string;
+  thumbnail: {
+    responsiveImage:{
+      src?: string;
+      srcSet?: string;
+      sizes?: string;
+      width?: number;
+      height?: number;
+    }
+  };
+}
+
+import { Image } from "astro:assets"
+
+const { title, thumbnail, slug, content } = Astro.props;
+---
+<div class="col">
+  <div class="card">
+    <Image
+      src={thumbnail.responsiveImage.src}
+      srcset={thumbnail.responsiveImage.srcSet}
+      sizes="(max-width: 768px) 100vw, 50vw"
+      width={thumbnail.responsiveImage.width}
+      height={thumbnail.responsiveImage.height}
+      alt={title}
+      class="card-img-top"
+    />
+    <div class="card-body">
+      <h5 class="card-title">{title}</h5>
+      <span class="card-text">{content}</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .card-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+</style>

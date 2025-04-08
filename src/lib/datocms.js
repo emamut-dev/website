@@ -1,6 +1,6 @@
-import { GraphQLClient } from 'graphql-request';
+import { GraphQLClient } from "graphql-request";
 
-const endpoint = 'https://graphql.datocms.com/';
+const endpoint = "https://graphql.datocms.com/";
 const token = import.meta.env.DATOCMS_TOKEN;
 
 const client = new GraphQLClient(endpoint, {
@@ -48,6 +48,34 @@ export async function getSocialNetworks() {
       }
 
       _allSocialNetworksMeta {
+        count
+      }
+    }
+  `;
+  const data = await client.request(query);
+  return data;
+}
+
+export async function getHomePosts() {
+  const query = `
+    query MyQuery {
+      allBlogs(orderBy: _createdAt_DESC, first: "3") {
+        title
+        content
+        thumbnail {
+          responsiveImage(imgixParams: {auto: format, w: 500, h: 200, fit: fill}) {
+            srcSet
+            webpSrcSet
+            sizes
+            src
+            width
+            height
+            alt
+            title
+          }
+        }
+      }
+      _allBlogsMeta(filter: {_status: {eq: published}}) {
         count
       }
     }

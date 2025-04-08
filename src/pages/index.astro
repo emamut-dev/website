@@ -1,22 +1,21 @@
 ---
-import { Image } from "astro:assets"
-
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import Header from '../components/Header.astro'
 import Form from '../components/Form.astro'
 import CardImage from '../components/CardImage.astro'
 import CardIcon from '../components/CardIcon.astro'
+import CardBlog from '../components/CardBlog.astro'
 import Footer from '../components/Footer.astro'
 
-import { getFeatures, getPortfolio, getSocialNetworks } from '../lib/datocms.js';
+import { getFeatures, getPortfolio, getSocialNetworks, getHomePosts } from '../lib/datocms.js';
 
 const { allFeatures } = await getFeatures();
 const { allPortfolios } = await getPortfolio();
 const { allSocialNetworks } = await getSocialNetworks();
+const { allBlogs } = await getHomePosts();
 
 import bgImage from '../images/desktop-banner.png'
-import yourSite from '../images/your-site.png'
 ---
 
 <Layout title="emamut">
@@ -61,6 +60,16 @@ import yourSite from '../images/your-site.png'
               })}
             </div>
           </div>
+        </div>
+      </section>
+      <section class="mt-5">
+        <h2>Noticias</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          {allBlogs.map(({title, thumbnail, slug, content}) => {
+            return (
+              <CardBlog thumbnail={thumbnail} title={title} slug={slug} content={content} />
+            )
+          })}
         </div>
       </section>
     </div>
