@@ -16,6 +16,7 @@ const { allPortfolios } = await getPortfolio();
 const { allSocialNetworks } = await getSocialNetworks();
 
 import bgImage from '../images/desktop-banner.png'
+import yourSite from '../images/your-site.png'
 ---
 
 <Layout title="emamut">
@@ -34,14 +35,12 @@ import bgImage from '../images/desktop-banner.png'
       <section class="mt-5">
         <h2>Descubre la creatividad que impulsa el éxito</h2>
         <p>En emamut, nos enorgullecemos de transformar ideas en realidades tangibles.</p>
-        <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
+        <div class="row row-cols-1 row-cols-md-3 justify-content-center g-4 mt-4">
           {allPortfolios.map(({title, image, link}) => {
             return (
               <CardImage image={image.url} title={title} link={link} />
             )
           })}
-
-          <!-- <CardImage image='your-site' title='' link='' /> -->
         </div>
       </section>
       <section class="mt-5">
