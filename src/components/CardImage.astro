@@ -1,8 +1,8 @@
 ---
 interface Props {
   title: string;
-	image: string;
-	link: string
+  image: string;
+  link: string
 }
 
 import { Image } from "astro:assets"
@@ -12,15 +12,15 @@ const { title, image, link } = Astro.props;
 
 <div class="col">
   <div class="card">
-    <a href={link} target="_blank">
-      <Image src={image} alt={title} class="img-fluid" inferSize={true} />
+  <a href={link} target="_blank">
+    <Image src={image} alt={title} class="img-fluid" inferSize={true} />
+  </a>
+  <div class="card-body">
+    { link !== '' && image !== '' &&
+    <a href={link} target="_blank" class="link-dark link-underline link-underline-opacity-0 link-underline-opacity-75-hover">
+      <h5 class="card-title">{title} <i class="fa-solid fa-arrow-up-right-from-square fa-xs card-icon"></i></h5>
     </a>
-    <div class="card-body">
-      { link !== '' && image !== '' &&
-        <a href={link} target="_blank" class="link-dark link-underline link-underline-opacity-0 link-underline-opacity-75-hover">
-          <h5 class="card-title">{title} <i class="fa-solid fa-arrow-up-right-from-square fa-xs card-icon"></i></h5>
-        </a>
-      }
-    </div>
+    }
+  </div>
   </div>
 </div>

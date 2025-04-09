@@ -1,22 +1,21 @@
 ---
-import { Image } from "astro:assets"
-
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
-import Header from '../components/Header.astro'
+import Header from '../components/HeaderHome.astro'
 import Form from '../components/Form.astro'
 import CardImage from '../components/CardImage.astro'
 import CardIcon from '../components/CardIcon.astro'
+import CardBlog from '../components/CardBlog.astro'
 import Footer from '../components/Footer.astro'
 
-import { getFeatures, getPortfolio, getSocialNetworks } from '../lib/datocms.js';
+import { getFeatures, getPortfolio, getSocialNetworks, getHomePosts } from '../lib/datocms.js';
 
 const { allFeatures } = await getFeatures();
 const { allPortfolios } = await getPortfolio();
 const { allSocialNetworks } = await getSocialNetworks();
+const { allBlogs } = await getHomePosts();
 
 import bgImage from '../images/desktop-banner.png'
-import yourSite from '../images/your-site.png'
 ---
 
 <Layout title="emamut">
@@ -32,7 +31,7 @@ import yourSite from '../images/your-site.png'
         })}
         </div>
       </section>
-      <section class="mt-5">
+      <section>
         <h2>Descubre la creatividad que impulsa el éxito</h2>
         <p>En emamut, nos enorgullecemos de transformar ideas en realidades tangibles.</p>
         <div class="row row-cols-1 row-cols-md-3 justify-content-center g-4 mt-4">
@@ -43,7 +42,7 @@ import yourSite from '../images/your-site.png'
           })}
         </div>
       </section>
-      <section class="mt-5">
+      <section>
         <h2>Conecta con nosotros y emprende el camino al éxito</h2>
         <div class="row mt-4">
           <div class="col-md-6">
@@ -63,7 +62,23 @@ import yourSite from '../images/your-site.png'
           </div>
         </div>
       </section>
+      <section>
+        <h2>Blog</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          {allBlogs.map(({title, thumbnail, slug, content}) => {
+            return (
+              <CardBlog thumbnail={thumbnail} title={title} slug={slug} content={content} />
+            )
+          })}
+        </div>
+      </section>
     </div>
     <Footer />
   </main>
 </Layout>
+
+<style>
+  section:not(:first-of-type) {
+    margin-top: 6rem;
+  }
+</style>

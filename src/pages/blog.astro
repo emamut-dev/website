@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro'
+import CardBlog from '../components/CardBlog.astro';
+import Footer from '../components/Footer.astro';
+
+import {getArchivePosts} from '../lib/datocms.js';
+
+const { allBlogs } = await getArchivePosts();
+---
+
+<Layout title='Blog'>
+  <main>
+    <Header />
+    <div class="container">
+      <div class="row mt-4">
+        <div class="col">
+          <h1>Blog</h1>
+        </div>
+      </div>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        {allBlogs.map(({title, thumbnail, slug, content}) => {
+          return (
+            <CardBlog thumbnail={thumbnail} title={title} slug={slug} content={content} />
+          )
+        })}
+      </div>
+    </div>
+    <Footer />
+  </main>
+</Layout>
