@@ -1,34 +1,26 @@
 ---
-interface Props {
-  backgroundImg: string;
-}
+import { Image } from 'astro:assets'
 
-const {backgroundImg} = Astro.props
+import logo from '../images/logo-emamut.png'
 ---
 
-<div class="container-fluid px-0">
-  <header></header>
-</div>
-
-<style define:vars={{ backgroundImg }}>
-  header {
-    height: 60vh;
-    background-image: var(--backgroundImg);
-    background-position: top center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: contain;
-  }
-
-  @media only screen and (max-width: 576px) {
-    header {
-      height: 20vh;
-    }
-  }
-
-  @media only screen and (min-width: 576px) and (max-width: 768px) {
-    header {
-      height: 30vh;
-    }
-  }
-</style>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <Image src={logo} alt="Logo emamut" class="img-fluid" width={120} />
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/blog">Blog</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
