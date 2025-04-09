@@ -1,0 +1,67 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro'
+import Footer from '../../components/Footer.astro'
+import { Image } from "astro:assets"
+
+import {getPosts} from '../../lib/datocms.js';
+
+export async function getStaticPaths() {
+  const { allBlogs } = await getPosts();
+
+  return allBlogs.map((post) => ({
+    params: { slug: post.slug },
+    props: { post }
+  }));
+}
+
+interface Post {
+  title: string;
+  slug: string;
+  content: string;
+  thumbnail: {
+    responsiveImage:{
+      src?: string;
+      srcSet?: string;
+      sizes?: string;
+      width?: number;
+      height?: number;
+    }
+  };
+}
+
+const { slug } = Astro.params;
+const { post } = Astro.props as { post: Post };
+---
+
+<Layout title={post.title}>
+  <main>
+    <Header />
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h1>{post.title}</h1>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col">
+            <Image
+              src={post.thumbnail.responsiveImage.src}
+              srcset={post.thumbnail.responsiveImage.srcSet}
+              sizes="(max-width: 1200px) 100vw, 600vw"
+              width={post.thumbnail.responsiveImage.width}
+              height={post.thumbnail.responsiveImage.height}
+              alt={post.title}
+              class="img-fluid"
+            />
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col" style="white-space: pre-line;">
+            {post.content}
+          </div>
+        </div>
+      </div>
+    <Footer />
+  </main>
+</Layout>

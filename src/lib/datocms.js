@@ -62,6 +62,36 @@ export async function getHomePosts() {
       allBlogs(orderBy: _createdAt_ASC, first: "3") {
         title
         content
+        slug
+        thumbnail {
+          responsiveImage(imgixParams: {auto: format, w: 500, h: 200, fit: fill}) {
+            srcSet
+            webpSrcSet
+            sizes
+            src
+            width
+            height
+            alt
+            title
+          }
+        }
+      }
+      _allBlogsMeta(filter: {_status: {eq: published}}) {
+        count
+      }
+    }
+  `;
+  const data = await client.request(query);
+  return data;
+}
+
+export async function getArchivePosts() {
+  const query = `
+    query MyQuery {
+      allBlogs(orderBy: _createdAt_ASC) {
+        title
+        content
+        slug
         thumbnail {
           responsiveImage(imgixParams: {auto: format, w: 500, h: 200, fit: fill}) {
             srcSet
@@ -90,8 +120,9 @@ export async function getPosts() {
       allBlogs(orderBy: _createdAt_ASC) {
         title
         content
+        slug
         thumbnail {
-          responsiveImage(imgixParams: {auto: format, w: 500, h: 200, fit: fill}) {
+          responsiveImage(imgixParams: {auto: format, w: 1200, h: 400, fit: crop}) {
             srcSet
             webpSrcSet
             sizes

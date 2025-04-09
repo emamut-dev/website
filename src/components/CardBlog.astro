@@ -20,19 +20,21 @@ const { title, thumbnail, slug, content } = Astro.props;
 ---
 <div class="col">
   <div class="card">
-    <Image
-      src={thumbnail.responsiveImage.src}
-      srcset={thumbnail.responsiveImage.srcSet}
-      sizes="(max-width: 768px) 100vw, 50vw"
-      width={thumbnail.responsiveImage.width}
-      height={thumbnail.responsiveImage.height}
-      alt={title}
-      class="card-img-top"
-    />
+    <a href={`/blog/${slug}`}>
+      <Image
+        src={thumbnail.responsiveImage.src}
+        srcset={thumbnail.responsiveImage.srcSet}
+        sizes="(max-width: 768px) 100vw, 50vw"
+        width={thumbnail.responsiveImage.width}
+        height={thumbnail.responsiveImage.height}
+        alt={title}
+        class="card-img-top"
+      />
+    </a>
     <div class="card-body">
-      <h5 class="card-title">{title}</h5>
+      <h5 class="card-title"><a href={`/blog/${slug}`} class="text-dark">{title}</a></h5>
       <span class="card-text">{content}</span>
-      <a href="/blog" class="text-muted">Leer más..</a>
+      <a href={`/blog/${slug}`} class="text-muted">Leer más..</a>
     </div>
   </div>
 </div>

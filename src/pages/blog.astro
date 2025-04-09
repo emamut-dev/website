@@ -4,9 +4,9 @@ import Header from '../components/Header.astro'
 import CardBlog from '../components/CardBlog.astro';
 import Footer from '../components/Footer.astro';
 
-import {getPosts} from '../lib/datocms.js';
+import {getArchivePosts} from '../lib/datocms.js';
 
-const { allBlogs } = await getPosts();
+const { allBlogs } = await getArchivePosts();
 ---
 
 <Layout title='Blog'>
