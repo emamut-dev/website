@@ -1,8 +1,10 @@
 ---
+import { Image } from "astro:assets"
+
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro'
 import Footer from '../../components/Footer.astro'
-import { Image } from "astro:assets"
+import { marked } from 'marked';
 
 import {getPosts} from '../../lib/datocms.js';
 
@@ -32,6 +34,7 @@ interface Post {
 
 const { slug } = Astro.params;
 const { post } = Astro.props as { post: Post };
+const contenidoHTML = marked.parse(post.content);
 ---
 
 <Layout title={post.title}>
@@ -58,7 +61,7 @@ const { post } = Astro.props as { post: Post };
         </div>
         <div class="row mt-4">
           <div class="col" style="white-space: pre-line;">
-            {post.content}
+            <div set:html={contenidoHTML} />
           </div>
         </div>
       </div>
