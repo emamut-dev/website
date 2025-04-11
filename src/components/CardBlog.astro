@@ -40,6 +40,16 @@ const { title, thumbnail, slug, content } = Astro.props;
 </div>
 
 <style>
+  h5.card-title a {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    text-decoration: none;
+  }
+
+  h5.card-title a:hover {
+    text-decoration: underline;
+  }
+
   .card-text {
     overflow: hidden;
     text-overflow: ellipsis;
