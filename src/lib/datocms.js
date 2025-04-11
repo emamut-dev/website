@@ -122,7 +122,7 @@ export async function getPosts() {
         content
         slug
         thumbnail {
-          responsiveImage(imgixParams: {auto: format, w: 1200, h: 400, fit: crop}) {
+          responsiveImage(imgixParams: {auto: format, w: 1200, h: 600, fit: crop}) {
             srcSet
             webpSrcSet
             sizes
