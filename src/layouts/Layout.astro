@@ -6,6 +6,7 @@ interface Props {
 const { title } = Astro.props;
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import Menu from '../components/Menu.astro';
 ---
 
 <!doctype html>
@@ -39,7 +40,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
     </script>
   </head>
   <body>
-    <slot />
+    <div class="container">
+      <Menu />
+      <slot />
+    </div>
   </body>
 </html>
 
