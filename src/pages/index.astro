@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
-import Header from '../components/HeaderHome.astro'
+import Menu from '../components/Menu.astro'
 import Form from '../components/Form.astro'
 import CardImage from '../components/CardImage.astro'
 import CardIcon from '../components/CardIcon.astro'
@@ -14,71 +14,13 @@ const { allFeatures } = await getFeatures();
 const { allPortfolios } = await getPortfolio();
 const { allSocialNetworks } = await getSocialNetworks();
 const { allBlogs } = await getHomePosts();
-
-import bgImage from '../images/desktop-banner.png'
 ---
 
 <Layout title="emamut">
   <main>
-    <Header backgroundImg={`url(${bgImage.src})`} />
-    <div class="container">
-      <section class="pt-5">
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-        {allFeatures.map(({title, body, icon}) => {
-          return (
-            <Card title={title} body={body} icon={icon} />
-          )
-        })}
-        </div>
-      </section>
-      <section>
-        <h2>Descubre la creatividad que impulsa el éxito</h2>
-        <p>En emamut, nos enorgullecemos de transformar ideas en realidades tangibles.</p>
-        <div class="row row-cols-1 row-cols-md-3 justify-content-center g-4 mt-4">
-          {allPortfolios.map(({title, image, link}) => {
-            return (
-              <CardImage image={image.url} title={title} link={link} />
-            )
-          })}
-        </div>
-      </section>
-      <section>
-        <h2>Conecta con nosotros y emprende el camino al éxito</h2>
-        <div class="row mt-4">
-          <div class="col-md-6">
-            <h5 class="mb-4">
-              <i class="fa-brands fa-whatsapp"></i> Celular: <a class="link-dark link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="https://wa.me/573023122904/?text=¡Hola%21%20Necesito%20m%C3%A1s%20informaci%C3%B3n" target="_blank">+57 302 312 2904</a>
-            </h5>
-            <Form />
-          </div>
-          <div class="col-md-6 d-flex align-items-center mt-3 mt-md-5">
-            <div class="row row-cols-3 g-4">
-              {allSocialNetworks.map(({icon, url}) => {
-                return (
-                  <CardIcon icon={icon} url={url} />
-                )
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
-      <section>
-        <h2>Blog</h2>
-        <div class="row row-cols-1 row-cols-md-3  justify-content-left g-4">
-          {allBlogs.map(({title, thumbnail, slug, content}) => {
-            return (
-              <CardBlog thumbnail={thumbnail} title={title} slug={slug} content={content} />
-            )
-          })}
-        </div>
-      </section>
-    </div>
-    <Footer />
+    <Menu />
   </main>
 </Layout>
 
 <style>
-  section:not(:first-of-type) {
-    margin-top: 6rem;
-  }
 </style>
