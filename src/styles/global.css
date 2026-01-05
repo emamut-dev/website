@@ -1,0 +1,13 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+body {
+  font-family: 'Geist';
+}
+
+h1 {
+  font-size: 60 px;
+}
+
+.text-orange {
+  color: #FF6B35;
+}

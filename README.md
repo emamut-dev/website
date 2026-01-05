@@ -7,8 +7,8 @@ Este proyecto contiene el código fuente del sitio web personal de **emamut**.
 ## Estructura del Proyecto
 
 - **`/src`**: Código fuente principal.
+- **`/src/styles`**: Hojas de estilo.
 - **`/public`**: Archivos estáticos.
-- **`/styles`**: Hojas de estilo.
 
 ## Requisitos
 
