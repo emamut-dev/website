@@ -14,15 +14,15 @@ importers:
       '@fontsource/geist':
         specifier: ^5.2.8
         version: 5.2.8
-      '@fortawesome/fontawesome-free':
-        specifier: ^6.7.2
-        version: 6.7.2
       astro:
         specifier: ^5.16.5
         version: 5.16.5(@types/node@22.15.29)(rollup@4.35.0)(typescript@5.6.3)
       bootstrap:
         specifier: ^5.3.6
         version: 5.3.6(@popperjs/core@2.11.8)
+      bootstrap-icons:
+        specifier: ^1.13.1
+        version: 1.13.1
       graphql-request:
         specifier: ^7.2.0
         version: 7.2.0(graphql@16.10.0)
@@ -244,10 +244,6 @@ packages:
 
   '@fontsource/geist@5.2.8':
     resolution: {integrity: sha512-pI54klK6vz8fVpAVyV+iODGLEzw73cs1XJqV9PIXgW8MYMmBcwK6lKKaWqJrNHwEx8ppz9cuhussb6arXQ/PVQ==}
-
-  '@fortawesome/fontawesome-free@6.7.2':
-    resolution: {integrity: sha512-JUOtgFW6k9u4Y+xeIaEiLr3+cjoUPiAuLXoyKOJSia6Duzb7pq+A76P9ZdPDoAoxHdHzq6gE9/jKBGXlZT8FbA==}
-    engines: {node: '>=6'}
 
   '@graphql-typed-document-node/core@3.2.0':
     resolution: {integrity: sha512-mB9oAsNCm9aM3/SOv4YtBMqZbYj10R7dkq8byBqxGY/ncFwhf2oQzMV+LCRlWoDSEBJ3COiR1yeDvMtsoOsuFQ==}
@@ -722,6 +718,9 @@ packages:
 
   boolbase@1.0.0:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
+
+  bootstrap-icons@1.13.1:
+    resolution: {integrity: sha512-ijombt4v6bv5CLeXvRWKy7CuM3TRTuPEuGaGKvTV5cz65rQSY8RQ2JcHt6b90cBBAC7s8fsf2EkQDldzCoXUjw==}
 
   bootstrap@5.3.6:
     resolution: {integrity: sha512-jX0GAcRzvdwISuvArXn3m7KZscWWFAf1MKBcnzaN02qWMb3jpMoUX4/qgeiGzqyIb4ojulRzs89UCUmGcFSzTA==}
@@ -1894,8 +1893,6 @@ snapshots:
 
   '@fontsource/geist@5.2.8': {}
 
-  '@fortawesome/fontawesome-free@6.7.2': {}
-
   '@graphql-typed-document-node/core@3.2.0(graphql@16.10.0)':
     dependencies:
       graphql: 16.10.0
@@ -2350,6 +2347,8 @@ snapshots:
   base64-js@1.5.1: {}
 
   boolbase@1.0.0: {}
+
+  bootstrap-icons@1.13.1: {}
 
   bootstrap@5.3.6(@popperjs/core@2.11.8):
     dependencies:

@@ -6,6 +6,8 @@ interface Props {
 const { title } = Astro.props;
 
 import "@fontsource/geist"
+import 'bootstrap-icons/font/bootstrap-icons.css';
+
 import '../styles/global.css';
 
 import Menu from '../components/Menu.astro';
@@ -42,8 +44,8 @@ import Menu from '../components/Menu.astro';
     </script>
   </head>
   <body>
+    <Menu />
     <div class="container">
-      <Menu />
       <slot />
     </div>
   </body>
@@ -51,8 +53,4 @@ import Menu from '../components/Menu.astro';
 
 <script>
   import 'bootstrap/dist/js/bootstrap.bundle.min.js'
-
-  import '@fortawesome/fontawesome-free/js/fontawesome.js';
-  import '@fortawesome/fontawesome-free/js/solid.js';
-  import '@fortawesome/fontawesome-free/js/brands.js';
 </script>
