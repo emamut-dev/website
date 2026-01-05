@@ -1,8 +1,8 @@
 # emamut Website
 
-Este proyecto contiene el código fuente del sitio web personal de **emamut**.
-
 [![Netlify Status](https://api.netlify.com/api/v1/badges/dbc8a8b0-6a5b-4772-9fe1-61c3b503e65e/deploy-status)](https://app.netlify.com/sites/emamut/deploys)
+
+Este proyecto contiene el código fuente del sitio web personal de **emamut**.
 
 ## Estructura del Proyecto
 
