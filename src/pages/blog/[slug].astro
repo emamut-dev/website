@@ -2,7 +2,6 @@
 import { Image } from "astro:assets"
 
 import Layout from '../../layouts/Layout.astro';
-import Header from '../../components/Header.astro'
 import Footer from '../../components/Footer.astro'
 import { marked } from 'marked';
 
@@ -39,7 +38,6 @@ const contenidoHTML = marked.parse(post.content);
 
 <Layout title={post.title}>
   <main>
-    <Header />
       <div class="container">
         <div class="row">
           <div class="col">
