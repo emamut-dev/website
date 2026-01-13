@@ -13,7 +13,6 @@
     "@astrojs/partytown": "^2.1.4",
     "@fontsource/geist": "^5.2.8",
     "astro": "^5.16.5",
-    "bootstrap": "^5.3.6",
     "bootstrap-icons": "^1.13.1",
     "graphql-request": "^7.2.0",
     "marked": "^15.0.12",
