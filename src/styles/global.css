@@ -1,9 +1,7 @@
 @import "tailwindcss";
 
-body {
-  font-family: 'Geist';
-}
-
 @theme {
-  --color-orange: #FF6B35;
+  --color-emamut-orange: #FF6B35;
+  --color-emamut-gray: #111827;
+  --font-geist: 'Geist', sans-serif;
 }

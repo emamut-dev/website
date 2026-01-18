@@ -7,7 +7,6 @@ const { title } = Astro.props;
 
 import '@fontsource/geist'
 import '@fontsource/geist/700.css'
-import 'bootstrap-icons/font/bootstrap-icons.css';
 
 import '../styles/global.css';
 
@@ -44,7 +43,7 @@ import Menu from '../components/Menu.astro';
       gtag('config', 'G-5B9FT8TRVV');
     </script>
   </head>
-  <body>
+  <body class="font-geist">
     <Menu />
     <div class="container mt-10 mx-auto px-6">
       <slot />

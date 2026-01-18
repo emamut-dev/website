@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets'
+import { Sun } from '@lucide/astro';
 import logo from '../images/logo-emamut.png'
 ---
 
@@ -16,15 +17,16 @@ import logo from '../images/logo-emamut.png'
 
       <!-- Menu Items (Desktop) -->
       <div class="hidden md:flex items-center space-x-4">
-        <a href="#" class="text-gray-700 hover:text-orange transition">Inicio</a>
-        <a href="#" class="text-gray-700 hover:text-orange transition">Servicios</a>
-        <a href="#" class="text-gray-700 hover:text-orange transition">Nosotros</a>
-        <a href="#" class="text-gray-700 hover:text-orange transition">Contacto</a>
+        <a href="#" class="text-emamut-gray hover:text-emamut-orange hover:underline hover:underline-offset-4 transition">Inicio</a>
+        <a href="#" class="text-emamut-gray hover:text-emamut-orange hover:underline hover:underline-offset-4 transition">Servicios</a>
+        <a href="#" class="text-emamut-gray hover:text-emamut-orange hover:underline hover:underline-offset-4 transition">Nosotros</a>
+        <a href="#" class="text-emamut-gray hover:text-emamut-orange hover:underline hover:underline-offset-4 transition">Contacto</a>
+        <a href="#" class="text-emamut-gray hover:text-emamut-orange hover:underline hover:underline-offset-4 transition"><Sun/></a>
       </div>
 
       <!-- Mobile Menu Button -->
       <div class="md:hidden">
-        <button class="text-gray-700 hover:text-orange">
+        <button class="text-emamut-gray hover:text-emamut-orange">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
