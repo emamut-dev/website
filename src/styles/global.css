@@ -1,7 +1,9 @@
+@import "tailwindcss";
+
 body {
   font-family: 'Geist';
 }
 
-.text-orange {
-  color: #FF6B35;
+@theme {
+  --color-orange: #FF6B35;
 }
