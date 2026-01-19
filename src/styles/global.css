@@ -1,7 +1,22 @@
 @import "tailwindcss";
+@inport "tailwindcss/preflight";
 
 @theme {
   --color-emamut-orange: #FF6B35;
   --color-emamut-gray: #111827;
   --font-geist: 'Geist', sans-serif;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-geist);
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold text-emamut-gray leading-[1.1] mb-6;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-800 mb-4;
+  }
 }
