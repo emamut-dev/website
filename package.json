@@ -10,15 +10,15 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/partytown": "^2.1.4",
-    "@fontsource/geist": "^5.2.8",
+    "@astrojs/partytown": "^2.1.7",
+    "@fontsource/geist": "^5.2.9",
     "@lucide/astro": "^0.562.0",
-    "@tailwindcss/vite": "^4.1.18",
-    "astro": "^5.16.5",
-    "graphql-request": "^7.2.0",
+    "@tailwindcss/vite": "^4.3.1",
+    "astro": "^5.18.2",
+    "graphql-request": "^7.4.0",
     "marked": "^15.0.12",
     "sharp": "^0.33.5",
-    "tailwindcss": "^4.1.18"
+    "tailwindcss": "^4.3.1"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
@@ -27,7 +27,7 @@
     ]
   },
   "devDependencies": {
-    "prettier": "^3.5.3",
+    "prettier": "^3.8.4",
     "prettier-plugin-astro": "^0.14.1"
   }
 }
