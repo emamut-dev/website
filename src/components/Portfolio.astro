@@ -1,0 +1,174 @@
+---
+import { ExternalLink } from '@lucide/astro';
+
+interface PortfolioItem {
+  title: string;
+  link: string;
+  image?: {
+    url: string;
+  };
+  description?: string;
+  tech?: string[];
+}
+
+interface Props {
+  items?: PortfolioItem[];
+}
+
+const { items = [] } = Astro.props;
+
+// Categorías / tags dinámicos para proyectos reales o de demostración
+const defaultTechSets = [
+  ['Astro', 'Tailwind CSS', 'SEO'],
+  ['E-Commerce', 'React', 'Stripe'],
+  ['Next.js', 'TypeScript', 'UI/UX'],
+  ['WordPress', 'Web Design', 'CMS'],
+  ['Desarrollo Web', 'Optimización', 'Branding'],
+  ['Web App', 'Responsive', 'Performance'],
+  ['Full Stack', 'Cloud', 'API'],
+];
+
+// Si DatoCMS retorna proyectos, los mapeamos; de lo contrario usamos los del diseño
+const fallbackProjects: PortfolioItem[] = [
+  {
+    title: 'E-commerce Moderno',
+    description: 'Plataforma de comercio electrónico con integración de pagos y gestión de inventario en tiempo real.',
+    tech: ['React', 'Node.js', 'MongoDB'],
+    link: '#',
+    image: { url: '/placeholder.svg' },
+  },
+  {
+    title: 'App Móvil Corporativa',
+    description: 'Aplicación para gestión empresarial con sincronización en tiempo real y modo offline.',
+    tech: ['React Native', 'Firebase', 'TypeScript'],
+    link: '#',
+    image: { url: '/placeholder.svg' },
+  },
+  {
+    title: 'Dashboard Analytics',
+    description: 'Panel de control con visualización de datos, métricas clave y reportes interactivos.',
+    tech: ['Vue.js', 'D3.js', 'Python'],
+    link: '#',
+    image: { url: '/placeholder.svg' },
+  },
+  {
+    title: 'Sistema CRM Personalizado',
+    description: 'Sistema integral de gestión de clientes, prospectos y automatización de procesos.',
+    tech: ['Angular', 'Laravel', 'MySQL'],
+    link: '#',
+    image: { url: '/placeholder.svg' },
+  },
+  {
+    title: 'Plataforma Educativa',
+    description: 'Plataforma LMS interactiva con videoconferencias y seguimiento de progreso formativo.',
+    tech: ['Next.js', 'WebRTC', 'PostgreSQL'],
+    link: '#',
+    image: { url: '/placeholder.svg' },
+  },
+  {
+    title: 'API Microservicios',
+    description: 'Arquitectura escalable de microservicios de alto rendimiento para aplicaciones empresariales.',
+    tech: ['Docker', 'Kubernetes', 'Go'],
+    link: '#',
+    image: { url: '/placeholder.svg' },
+  },
+];
+
+const projects = items.length > 0
+  ? items.map((item, idx) => ({
+      ...item,
+      description: item.description || 'Solución digital a medida desarrollada para potenciar el alcance de la marca.',
+      tech: item.tech || defaultTechSets[idx % defaultTechSets.length],
+    }))
+  : fallbackProjects;
+---
+
+<section id="portfolio" class="py-20 bg-white dark:bg-gray-900 transition-colors">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emamut-orange/10 text-emamut-orange text-xs font-semibold tracking-wider uppercase mb-3">
+        Casos de Éxito
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white tracking-tight">
+        Nuestro Portfolio
+      </h2>
+      <p class="mt-4 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+        Descubre algunos de nuestros proyectos más destacados y las soluciones que hemos desarrollado para nuestros clientes.
+      </p>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {projects.map((project) => {
+        const imageUrl = project.image?.url || '/placeholder.svg';
+        const hasExternalLink = project.link && project.link !== '#';
+
+        return (
+          <article class="group relative flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-gray-800/90 border border-gray-100 dark:border-gray-800 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+            <!-- Image with Zoom & Hover Overlay -->
+            <div class="relative w-full h-52 overflow-hidden bg-gray-100 dark:bg-gray-950">
+              <img
+                src={imageUrl}
+                alt={project.title}
+                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-gray-950/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                {hasExternalLink ? (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-12 h-12 rounded-full bg-emamut-orange text-white flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform duration-300"
+                    aria-label={`Visitar sitio web de ${project.title}`}
+                  >
+                    <ExternalLink class="w-5 h-5" />
+                  </a>
+                ) : (
+                  <span class="w-12 h-12 rounded-full bg-emamut-orange text-white flex items-center justify-center shadow-lg">
+                    <ExternalLink class="w-5 h-5" />
+                  </span>
+                )}
+              </div>
+            </div>
+
+            <!-- Card Content -->
+            <div class="flex-1 p-6 flex flex-col justify-between space-y-4">
+              <div class="space-y-2">
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-emamut-orange transition-colors">
+                  {hasExternalLink ? (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-1.5 hover:underline"
+                    >
+                      {project.title}
+                    </a>
+                  ) : (
+                    project.title
+                  )}
+                </h3>
+                <p class="text-sm text-gray-600 dark:text-gray-300 line-clamp-2 leading-relaxed">
+                  {project.description}
+                </p>
+              </div>
+
+              <!-- Tags / Tech Badges -->
+              {project.tech && project.tech.length > 0 && (
+                <div class="flex flex-wrap gap-2 pt-2 border-t border-gray-100 dark:border-gray-750">
+                  {project.tech.map((t) => (
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-emamut-orange/10 text-emamut-orange dark:bg-emamut-orange/20 dark:text-emamut-orange-light">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</section>

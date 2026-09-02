@@ -1,62 +1,49 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
-import Form from '../components/Form.astro'
-import CardImage from '../components/CardImage.astro'
-import CardIcon from '../components/CardIcon.astro'
-import CardBlog from '../components/CardBlog.astro'
-import Footer from '../components/Footer.astro'
+import Hero from '../components/Hero.astro';
+import Portfolio from '../components/Portfolio.astro';
+import BlogSection from '../components/BlogSection.astro';
+import Contact from '../components/Contact.astro';
 
 import { getFeatures, getPortfolio, getSocialNetworks, getHomePosts } from '../lib/datocms.js';
 
-const { allFeatures } = await getFeatures();
-const { allPortfolios } = await getPortfolio();
-const { allSocialNetworks } = await getSocialNetworks();
-const { allBlogs } = await getHomePosts();
+let allFeatures = [];
+let allPortfolios = [];
+let allSocialNetworks = [];
+let allBlogs = [];
+
+try {
+  const featuresRes = await getFeatures();
+  allFeatures = featuresRes?.allFeatures || [];
+} catch (error) {
+  console.warn('Could not fetch features from DatoCMS:', error);
+}
+
+try {
+  const portfolioRes = await getPortfolio();
+  allPortfolios = portfolioRes?.allPortfolios || [];
+} catch (error) {
+  console.warn('Could not fetch portfolio from DatoCMS:', error);
+}
+
+try {
+  const socialRes = await getSocialNetworks();
+  allSocialNetworks = socialRes?.allSocialNetworks || [];
+} catch (error) {
+  console.warn('Could not fetch social networks from DatoCMS:', error);
+}
+
+try {
+  const blogsRes = await getHomePosts();
+  allBlogs = blogsRes?.allBlogs || [];
+} catch (error) {
+  console.warn('Could not fetch home blogs from DatoCMS:', error);
+}
 ---
 
-<Layout title="emamut">
-  <div class="grid grid-cols-1 md:grid-cols-2 mb-24 gap-6">
-    <div>
-      <h1>
-        Soluciones <br>
-        <span class="text-emamut-orange">Tecnológicas</span> <br>
-        Innovadoras
-      </h1>
-      <p class="mt-4">
-        En <span class="font-bold text-emamut-orange">emamut</span> transformamos ideas en realidades digitales.
-        Desarrollamos software a medida, aplicaciones web y móviles que
-        impulsan el crecimiento de tu negocio.
-      </p>
-
-      <div class="flex flex-wrap gap-4 mt-4">
-        <button class="
-          bg-emamut-orange text-white px-6 py-3 rounded-lg font-semibold
-          hover:bg-orange-700
-          transition-colors duration-300
-        ">
-          Ver portafolio
-        </button>
-
-        <button class="
-          border-2 border-emamut-orange text-emamut-orange px-6 py-3 rounded-lg font-semibold
-          hover:bg-emamut-orange hover:text-white
-          transition-all duration-300
-        ">
-          Contactar
-        </button>
-      </div>
-    </div>
-    <div>
-      <img src="https://placehold.co/600x450" alt="" class="w-full h-auto">
-    </div>
-  </div>
-  <div class="grid grid-cols-1 my-24">
-    <div class="w-1/2 mx-auto">
-      <h2 class="text-center">Nuestro Portafolio</h2>
-      <p class="text-center">Descubre algunos de nuestros proyectos más destacados y las
-        soluciones que hemos desarrollado para nuestros clientes.
-      </p>
-    </div>
-  </div>
+<Layout title="Inicio">
+  <Hero />
+  <Portfolio items={allPortfolios} />
+  <BlogSection posts={allBlogs} />
+  <Contact socialNetworks={allSocialNetworks} />
 </Layout>
