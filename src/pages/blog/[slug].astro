@@ -1,18 +1,15 @@
 ---
-import { Image } from "astro:assets"
-
 import Layout from '../../layouts/Layout.astro';
-import Footer from '../../components/Footer.astro'
 import { marked } from 'marked';
-
-import {getPosts} from '../../lib/datocms.js';
+import { getPosts } from '../../lib/datocms.js';
+import { ArrowLeft, Calendar, User, MessageCircle } from '@lucide/astro';
 
 export async function getStaticPaths() {
   const { allBlogs } = await getPosts();
 
   return allBlogs.map((post) => ({
     params: { slug: post.slug },
-    props: { post }
+    props: { post },
   }));
 }
 
@@ -21,48 +18,159 @@ interface Post {
   slug: string;
   content: string;
   thumbnail: {
-    responsiveImage:{
+    responsiveImage: {
       src?: string;
       srcSet?: string;
       sizes?: string;
       width?: number;
       height?: number;
-    }
+    };
   };
 }
 
-const { slug } = Astro.params;
 const { post } = Astro.props as { post: Post };
 const contenidoHTML = marked.parse(post.content);
+const imageSrc = post.thumbnail?.responsiveImage?.src || '/placeholder.svg';
 ---
 
 <Layout title={post.title}>
-  <main>
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            <h1>{post.title}</h1>
+  <article class="pt-32 pb-24 bg-white dark:bg-gray-900 transition-colors">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Botón de regreso -->
+      <a
+        href="/blog"
+        class="inline-flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-emamut-orange dark:hover:text-emamut-orange transition-colors mb-8 group"
+      >
+        <ArrowLeft class="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+        <span>Volver a todos los artículos</span>
+      </a>
+
+      <!-- Cabecera del Artículo -->
+      <header class="space-y-4 mb-10">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emamut-orange/10 text-emamut-orange text-xs font-semibold tracking-wider uppercase">
+          Artículo
+        </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 dark:text-white leading-[1.2] tracking-tight">
+          {post.title}
+        </h1>
+
+        <div class="flex items-center gap-6 pt-2 text-sm text-gray-500 dark:text-gray-400 border-y border-gray-100 dark:border-gray-800 py-3">
+          <div class="flex items-center gap-2">
+            <User class="w-4 h-4 text-emamut-orange" />
+            <span class="font-medium text-gray-700 dark:text-gray-300">Equipo Emamut</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <Calendar class="w-4 h-4" />
+            <span>Actualizado recientemente</span>
           </div>
         </div>
-        <div class="row mt-4">
-          <div class="col">
-            <Image
-              src={post.thumbnail.responsiveImage.src}
-              srcset={post.thumbnail.responsiveImage.srcSet}
-              sizes="(max-width: 1200px) 100vw, 600vw"
-              width={post.thumbnail.responsiveImage.width}
-              height={post.thumbnail.responsiveImage.height}
-              alt={post.title}
-              class="img-fluid"
-            />
-          </div>
+      </header>
+
+      <!-- Imagen principal -->
+      {imageSrc && (
+        <div class="mb-12 rounded-2xl overflow-hidden shadow-xl bg-gray-100 dark:bg-gray-800 border border-gray-100 dark:border-gray-800 max-h-[500px]">
+          <img
+            src={imageSrc}
+            alt={post.title}
+            class="w-full h-auto object-cover max-h-[500px]"
+            loading="eager"
+          />
         </div>
-        <div class="row justify-content-center mt-4">
-          <div class="col-md-8" style="white-space: pre-line;">
-            <div set:html={contenidoHTML} />
-          </div>
+      )}
+
+      <!-- Contenido del Artículo -->
+      <div
+        class="article-content text-gray-800 dark:text-gray-200 text-lg leading-relaxed space-y-6"
+        set:html={contenidoHTML}
+      />
+
+      <!-- Callout al final del artículo -->
+      <div class="mt-16 bg-gradient-to-br from-gray-50 to-orange-50/50 dark:from-gray-800 dark:to-gray-800/60 rounded-2xl p-8 border border-emamut-orange/20 shadow-lg text-center sm:text-left sm:flex sm:items-center sm:justify-between gap-6">
+        <div class="space-y-2 mb-6 sm:mb-0">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white">
+            ¿Necesitas asesoría técnica para tu empresa?
+          </h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            Contáctanos hoy y descubre cómo podemos ayudarte a proteger y hacer crecer tu negocio digital.
+          </p>
         </div>
+        <a
+          href="https://wa.me/573023122904/?text=¡Hola!%20Leí%20su%20artículo%20y%20me%20gustaría%20más%20información"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm bg-emamut-orange hover:bg-emamut-orange-dark text-white shadow-md hover:shadow-lg transition-all shrink-0"
+        >
+          <MessageCircle class="w-4 h-4" />
+          <span>Consultar por WhatsApp</span>
+        </a>
       </div>
-    <Footer />
-  </main>
+    </div>
+  </article>
 </Layout>
+
+<style is:global>
+  .article-content h2 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-emamut-gray);
+  }
+  :is(.dark) .article-content h2 {
+    color: #ffffff;
+  }
+  .article-content h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-emamut-gray);
+  }
+  :is(.dark) .article-content h3 {
+    color: #f3f4f6;
+  }
+  .article-content p {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+  }
+  .article-content ul, .article-content ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    list-style-type: disc;
+  }
+  .article-content li {
+    margin-bottom: 0.5rem;
+    line-height: 1.7;
+  }
+  .article-content a {
+    color: #FF6B35;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .article-content a:hover {
+    color: #E55A2B;
+  }
+  .article-content blockquote {
+    border-left: 4px solid #FF6B35;
+    padding-left: 1rem;
+    font-style: italic;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #4b5563;
+  }
+  :is(.dark) .article-content blockquote {
+    color: #9ca3af;
+  }
+  .article-content pre {
+    background-color: #111827;
+    color: #f3f4f6;
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+  }
+  .article-content code {
+    font-size: 0.875em;
+    font-family: monospace;
+  }
+</style>

@@ -1,25 +1,49 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
-import Form from '../components/Form.astro'
-import CardImage from '../components/CardImage.astro'
-import CardIcon from '../components/CardIcon.astro'
-import CardBlog from '../components/CardBlog.astro'
-import Footer from '../components/Footer.astro'
+import Hero from '../components/Hero.astro';
+import Portfolio from '../components/Portfolio.astro';
+import BlogSection from '../components/BlogSection.astro';
+import Contact from '../components/Contact.astro';
 
 import { getFeatures, getPortfolio, getSocialNetworks, getHomePosts } from '../lib/datocms.js';
 
-const { allFeatures } = await getFeatures();
-const { allPortfolios } = await getPortfolio();
-const { allSocialNetworks } = await getSocialNetworks();
-const { allBlogs } = await getHomePosts();
+let allFeatures = [];
+let allPortfolios = [];
+let allSocialNetworks = [];
+let allBlogs = [];
+
+try {
+  const featuresRes = await getFeatures();
+  allFeatures = featuresRes?.allFeatures || [];
+} catch (error) {
+  console.warn('Could not fetch features from DatoCMS:', error);
+}
+
+try {
+  const portfolioRes = await getPortfolio();
+  allPortfolios = portfolioRes?.allPortfolios || [];
+} catch (error) {
+  console.warn('Could not fetch portfolio from DatoCMS:', error);
+}
+
+try {
+  const socialRes = await getSocialNetworks();
+  allSocialNetworks = socialRes?.allSocialNetworks || [];
+} catch (error) {
+  console.warn('Could not fetch social networks from DatoCMS:', error);
+}
+
+try {
+  const blogsRes = await getHomePosts();
+  allBlogs = blogsRes?.allBlogs || [];
+} catch (error) {
+  console.warn('Could not fetch home blogs from DatoCMS:', error);
+}
 ---
 
-<Layout title="emamut">
-  <main>
-
-  </main>
+<Layout title="Inicio">
+  <Hero />
+  <Portfolio items={allPortfolios} />
+  <BlogSection posts={allBlogs} />
+  <Contact socialNetworks={allSocialNetworks} />
 </Layout>
-
-<style>
-</style>

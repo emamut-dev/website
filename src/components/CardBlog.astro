@@ -4,57 +4,64 @@ interface Props {
   slug: string;
   content: string;
   thumbnail: {
-    responsiveImage:{
+    responsiveImage?: {
       src?: string;
       srcSet?: string;
       sizes?: string;
       width?: number;
       height?: number;
-    }
+      alt?: string;
+    };
   };
 }
 
-import { Image } from "astro:assets"
+import { User, ArrowRight } from '@lucide/astro';
 
 const { title, thumbnail, slug, content } = Astro.props;
+
+const plainText = content ? content.replace(/[#*`_\[\]]/g, '').slice(0, 140) + '...' : '';
+const imgSrc = thumbnail?.responsiveImage?.src || '/placeholder.svg';
 ---
-<div class="col">
-  <div class="card">
-    <a href={`/blog/${slug}`}>
-      <Image
-        src={thumbnail.responsiveImage.src}
-        srcset={thumbnail.responsiveImage.srcSet}
-        sizes="(max-width: 768px) 100vw, 50vw"
-        width={thumbnail.responsiveImage.width}
-        height={thumbnail.responsiveImage.height}
-        alt={title}
-        class="card-img-top"
+
+<article class="group flex flex-col bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl border border-gray-100 dark:border-gray-700/60 transition-all duration-300 hover:-translate-y-1">
+  <div class="relative w-full h-52 overflow-hidden bg-gray-100 dark:bg-gray-950">
+    <a href={`/blog/${slug}`} class="block w-full h-full" aria-label={`Leer artículo: ${title}`}>
+      <img
+        src={imgSrc}
+        alt={thumbnail?.responsiveImage?.alt || title}
+        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        loading="lazy"
       />
     </a>
-    <div class="card-body">
-      <h5 class="card-title"><a href={`/blog/${slug}`} class="text-dark">{title}</a></h5>
-      <span class="card-text">{content}</span>
-      <a href={`/blog/${slug}`} class="text-muted">Leer más..</a>
+    <span class="absolute top-3 left-3 px-3 py-1 text-xs font-semibold rounded-full bg-emamut-orange text-white shadow-md">
+      Artículo
+    </span>
+  </div>
+
+  <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+    <div class="space-y-2">
+      <h2 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-emamut-orange transition-colors line-clamp-2">
+        <a href={`/blog/${slug}`}>
+          {title}
+        </a>
+      </h2>
+      <p class="text-sm text-gray-600 dark:text-gray-300 line-clamp-3 leading-relaxed">
+        {plainText}
+      </p>
+    </div>
+
+    <div class="pt-4 border-t border-gray-100 dark:border-gray-700 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+      <div class="flex items-center space-x-1.5">
+        <User class="w-3.5 h-3.5 text-emamut-orange" />
+        <span>Emamut</span>
+      </div>
+      <a
+        href={`/blog/${slug}`}
+        class="inline-flex items-center gap-1 font-semibold text-emamut-orange hover:text-emamut-orange-dark transition-colors"
+      >
+        <span>Leer más</span>
+        <ArrowRight class="w-3.5 h-3.5" />
+      </a>
     </div>
   </div>
-</div>
-
-<style>
-  h5.card-title a {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-    text-decoration: none;
-  }
-
-  h5.card-title a:hover {
-    text-decoration: underline;
-  }
-
-  .card-text {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-  }
-</style>
+</article>

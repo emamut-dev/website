@@ -1,35 +1,51 @@
 ---
 interface Props {
   title: string;
+  description?: string;
 }
 
-const { title } = Astro.props;
+const {
+  title,
+  description = "Emamut - Soluciones Tecnológicas Innovadoras. Desarrollamos software a medida, aplicaciones web y móviles.",
+} = Astro.props;
 
-import "@fontsource/geist"
+import '@fontsource/geist';
+import '@fontsource/geist/700.css';
 import '../styles/global.css';
 
 import Menu from '../components/Menu.astro';
+import Footer from '../components/Footer.astro';
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Creative Studio" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
 
     <link rel="icon" href="/favicon.ico" />
     <link rel="icon" href="/favicon-16x16.png" sizes="16x16" />
     <link rel="icon" href="/favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" href="/apple-touch-icon.png" />
-    <link rel="icon" href="/android-chrome-192x192.png" sizes="192x192" />
-    <link rel="icon" href="/android-chrome-192x192.png" sizes="192x192" />
-
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#FF6B35" />
 
     <meta name="generator" content={Astro.generator} />
-    <title>{title} - La agencia de los emprendedores</title>
+    <title>{title} | Emamut - Soluciones Tecnológicas Innovadoras</title>
+
+    <!-- Script para evitar destellos (FOUC) en modo oscuro -->
+    <script is:inline>
+      (() => {
+        const storedTheme = typeof localStorage !== 'undefined' ? localStorage.getItem('theme') : null;
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      })();
+    </script>
 
     <!-- Google tag (gtag.js) -->
     <script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-5B9FT8TRVV"></script>
@@ -41,18 +57,11 @@ import Menu from '../components/Menu.astro';
       gtag('config', 'G-5B9FT8TRVV');
     </script>
   </head>
-  <body>
-    <div class="container">
-      <Menu />
+  <body class="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-200 antialiased selection:bg-emamut-orange selection:text-white flex flex-col">
+    <Menu />
+    <main class="flex-1">
       <slot />
-    </div>
+    </main>
+    <Footer />
   </body>
 </html>
-
-<script>
-  import 'bootstrap/dist/js/bootstrap.bundle.min.js'
-
-  import '@fortawesome/fontawesome-free/js/fontawesome.js';
-  import '@fortawesome/fontawesome-free/js/solid.js';
-  import '@fortawesome/fontawesome-free/js/brands.js';
-</script>

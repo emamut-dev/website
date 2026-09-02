@@ -1,13 +1,21 @@
-@import 'bootstrap/dist/css/bootstrap.min.css';
+@import "tailwindcss";
 
-body {
-  font-family: 'Geist';
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-emamut-orange: #FF6B35;
+  --color-emamut-orange-dark: #E55A2B;
+  --color-emamut-orange-light: #FF8A5C;
+  --color-emamut-gray: #111827;
+  --font-geist: 'Geist', sans-serif;
 }
 
-h1 {
-  font-size: 60 px;
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-.text-orange {
-  color: #FF6B35;
+  body {
+    font-family: var(--font-geist);
+  }
 }

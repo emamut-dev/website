@@ -1,0 +1,66 @@
+---
+import { Sun, Moon } from '@lucide/astro';
+
+interface Props {
+  class?: string;
+  showLabel?: boolean;
+}
+
+const { class: className = '', showLabel = false } = Astro.props;
+---
+
+<button
+  type="button"
+  data-theme-toggle
+  class:list={[
+    "relative inline-flex items-center justify-center p-2 rounded-xl text-gray-700 dark:text-gray-300 hover:text-emamut-orange dark:hover:text-emamut-orange hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-emamut-orange/50 cursor-pointer group",
+    className,
+  ]}
+  aria-label="Cambiar tema claro/oscuro"
+  title="Cambiar tema claro/oscuro"
+>
+  <span class="relative w-5 h-5 flex items-center justify-center">
+    <!-- Icono Sol (Modo claro) -->
+    <Sun class="w-5 h-5 transition-all duration-300 transform rotate-0 scale-100 opacity-100 dark:-rotate-90 dark:scale-0 dark:opacity-0" />
+    <!-- Icono Luna (Modo oscuro) -->
+    <Moon class="absolute w-5 h-5 transition-all duration-300 transform rotate-90 scale-0 opacity-0 dark:rotate-0 dark:scale-100 dark:opacity-100" />
+  </span>
+  {showLabel && (
+    <span class="ml-2.5 text-sm font-medium select-none">
+      <span class="dark:hidden">Modo Claro</span>
+      <span class="hidden dark:inline">Modo Oscuro</span>
+    </span>
+  )}
+</button>
+
+<script>
+  function initThemeToggle() {
+    // Escucha global delegada: se garantiza que solo exista un listener aunque el componente se use varias veces
+    if ((window as any).__themeToggleInitialized) return;
+    (window as any).__themeToggleInitialized = true;
+
+    document.addEventListener('click', (event) => {
+      const target = event.target as HTMLElement | null;
+      const toggleBtn = target?.closest('[data-theme-toggle]');
+      if (!toggleBtn) return;
+
+      event.preventDefault();
+      const isDark = document.documentElement.classList.toggle('dark');
+      try {
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      } catch (err) {
+        console.warn('No se pudo guardar la preferencia de tema en localStorage:', err);
+      }
+    });
+
+    // Sincronizar si el usuario cambia el tema del sistema operativo y no ha forzado uno manualmente
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      if (!localStorage.getItem('theme')) {
+        document.documentElement.classList.toggle('dark', e.matches);
+      }
+    });
+  }
+
+  initThemeToggle();
+  document.addEventListener('astro:after-swap', initThemeToggle);
+</script>
