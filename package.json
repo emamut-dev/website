@@ -21,6 +21,7 @@
     "tailwindcss": "^4.3.3"
   },
   "pnpm": {
+    "onlyBuiltDependencies": ["sharp"],
     "neverBuiltDependencies": [],
     "supportedArchitectures": {
       "os": ["linux"],
