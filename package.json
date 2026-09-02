@@ -21,10 +21,11 @@
     "tailwindcss": "^4.3.3"
   },
   "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "sharp"
-    ]
+    "neverBuiltDependencies": [],
+    "supportedArchitectures": {
+      "os": ["linux"],
+      "cpu": ["x64"]
+    }
   },
   "devDependencies": {
     "prettier": "^3.9.6",
