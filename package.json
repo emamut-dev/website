@@ -20,13 +20,7 @@
     "sharp": "^0.33.5",
     "tailwindcss": "^4.3.3"
   },
-  "pnpm": {
-    "neverBuiltDependencies": [],
-    "supportedArchitectures": {
-      "os": ["linux"],
-      "cpu": ["x64"]
-    }
-  },
+  "packageManager": "pnpm@11.24.0",
   "devDependencies": {
     "prettier": "^3.9.6",
     "prettier-plugin-astro": "^0.14.1"
