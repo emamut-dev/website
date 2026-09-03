@@ -1,5 +1,5 @@
 ---
-import { Mail, Phone, MapPin, Github, Linkedin, Twitter, Send, MessageCircle } from '@lucide/astro';
+import { Icon } from 'astro-icon/components';
 
 interface SocialLink {
   icon: string;
@@ -11,6 +11,44 @@ interface Props {
 }
 
 const { socialNetworks = [] } = Astro.props;
+
+// Mapeo flexible para iconos de redes sociales (soporta nombres directos de FontAwesome, Simple Icons, etc.)
+const resolveSocialIcon = (iconName: string): string => {
+  const cleanName = (iconName || '')
+    .toLowerCase()
+    .trim()
+    .replace(/^fa-(brands|solid|regular)\s+/, '')
+    .replace(/^fa-/, '');
+
+  const iconMap: Record<string, string> = {
+    github: 'simple-icons:github',
+    linkedin: 'simple-icons:linkedin',
+    twitter: 'simple-icons:x',
+    'x-twitter': 'simple-icons:x',
+    x: 'simple-icons:x',
+    whatsapp: 'simple-icons:whatsapp',
+    instagram: 'simple-icons:instagram',
+    facebook: 'simple-icons:facebook',
+    youtube: 'simple-icons:youtube',
+    discord: 'simple-icons:discord',
+    telegram: 'simple-icons:telegram',
+    tiktok: 'simple-icons:tiktok',
+    mail: 'lucide:mail',
+    envelope: 'lucide:mail',
+    phone: 'lucide:phone',
+  };
+
+  return iconMap[cleanName] || (cleanName.includes(':') ? cleanName : `simple-icons:${cleanName}`);
+};
+
+const defaultSocialLinks: SocialLink[] = [
+  { icon: 'github', url: 'https://github.com/orgs/emamut-dev/' },
+  { icon: 'linkedin', url: 'https://www.linkedin.com/company/emamut/' },
+  { icon: 'x', url: 'https://x.com/emamutDev' },
+  { icon: 'whatsapp', url: 'https://wa.me/573160414585/?text=¡Hola!%20Necesito%20más%20información' },
+];
+
+const socialLinks = socialNetworks.length > 0 ? socialNetworks : defaultSocialLinks;
 ---
 
 <section id="contact" class="py-20 bg-white dark:bg-gray-900 transition-colors">
@@ -120,7 +158,7 @@ const { socialNetworks = [] } = Astro.props;
             type="submit"
             class="w-full py-3.5 px-6 rounded-xl font-semibold text-sm bg-emamut-orange hover:bg-emamut-orange-dark text-white shadow-lg shadow-orange-500/25 hover:shadow-orange-500/35 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
           >
-            <Send class="w-4 h-4" />
+            <Icon name="lucide:send" class="w-4 h-4" />
             <span>Enviar Mensaje</span>
           </button>
         </form>
@@ -136,7 +174,7 @@ const { socialNetworks = [] } = Astro.props;
             <!-- Email -->
             <div class="flex items-start space-x-4">
               <div class="p-3 rounded-xl bg-emamut-orange/10 dark:bg-emamut-orange/20 text-emamut-orange shrink-0">
-                <Mail class="w-6 h-6" />
+                <Icon name="lucide:mail" class="w-6 h-6" />
               </div>
               <div>
                 <h4 class="font-semibold text-gray-900 dark:text-white text-sm">Correo Electrónico</h4>
@@ -149,7 +187,7 @@ const { socialNetworks = [] } = Astro.props;
             <!-- Teléfono / WhatsApp -->
             <div class="flex items-start space-x-4">
               <div class="p-3 rounded-xl bg-emamut-orange/10 dark:bg-emamut-orange/20 text-emamut-orange shrink-0">
-                <Phone class="w-6 h-6" />
+                <Icon name="lucide:phone" class="w-6 h-6" />
               </div>
               <div>
                 <h4 class="font-semibold text-gray-900 dark:text-white text-sm">Teléfono & WhatsApp</h4>
@@ -163,7 +201,7 @@ const { socialNetworks = [] } = Astro.props;
             <!-- Ubicación -->
             <div class="flex items-start space-x-4">
               <div class="p-3 rounded-xl bg-emamut-orange/10 dark:bg-emamut-orange/20 text-emamut-orange shrink-0">
-                <MapPin class="w-6 h-6" />
+                <Icon name="lucide:map-pin" class="w-6 h-6" />
               </div>
               <div>
                 <h4 class="font-semibold text-gray-900 dark:text-white text-sm">Ubicación</h4>
@@ -182,42 +220,17 @@ const { socialNetworks = [] } = Astro.props;
             Síguenos en Redes
           </h4>
           <div class="flex flex-wrap gap-3">
-            <a
-              href="https://github.com/orgs/emamut-dev/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="p-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-emamut-orange hover:text-white dark:hover:bg-emamut-orange dark:hover:text-white transition-all shadow-sm"
-              aria-label="GitHub de Emamut"
-            >
-              <Github class="w-5 h-5" />
-            </a>
-            <a
-              href="https://www.linkedin.com/company/emamut/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="p-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-emamut-orange hover:text-white dark:hover:bg-emamut-orange dark:hover:text-white transition-all shadow-sm"
-              aria-label="LinkedIn de Emamut"
-            >
-              <Linkedin class="w-5 h-5" />
-            </a>
-            <a
-              href="https://x.com/emamutDev"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="p-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-emamut-orange hover:text-white dark:hover:bg-emamut-orange dark:hover:text-white transition-all shadow-sm"
-              aria-label="X de Emamut"
-            >
-              <Twitter class="w-5 h-5" />
-            </a>
-            <a
-              href="https://wa.me/573160414585/?text=¡Hola!%20Necesito%20más%20información"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="p-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-emamut-orange hover:text-white dark:hover:bg-emamut-orange dark:hover:text-white transition-all shadow-sm"
-              aria-label="WhatsApp de Emamut"
-            >
-              <MessageCircle class="w-5 h-5" />
-            </a>
+            {socialLinks.map((social) => (
+              <a
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="p-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-emamut-orange hover:text-white dark:hover:bg-emamut-orange dark:hover:text-white transition-all shadow-sm"
+                aria-label={`Red social ${social.icon}`}
+              >
+                <Icon name={resolveSocialIcon(social.icon)} class="w-5 h-5" />
+              </a>
+            ))}
           </div>
         </div>
 
@@ -235,7 +248,7 @@ const { socialNetworks = [] } = Astro.props;
                 rel="noopener noreferrer"
                 class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl font-semibold text-sm bg-white text-emamut-orange hover:bg-gray-50 shadow-md transition-colors"
               >
-                <MessageCircle class="w-4 h-4" />
+                <Icon name="simple-icons:whatsapp" class="w-4 h-4" />
                 <span>Agendar Consulta</span>
               </a>
             </div>

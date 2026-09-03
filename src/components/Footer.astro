@@ -1,5 +1,5 @@
 ---
-import { Github, Linkedin, Twitter, Mail, Phone, MessageCircle } from '@lucide/astro';
+import { Icon } from 'astro-icon/components';
 ---
 
 <footer class="bg-gray-50 dark:bg-gray-950 text-gray-600 dark:text-gray-300 pt-16 pb-12 border-t border-gray-200 dark:border-gray-800 transition-colors">
@@ -25,7 +25,7 @@ import { Github, Linkedin, Twitter, Mail, Phone, MessageCircle } from '@lucide/a
             class="w-9 h-9 rounded-lg bg-gray-200/80 dark:bg-gray-900 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-white hover:bg-emamut-orange dark:hover:text-white dark:hover:bg-emamut-orange transition-colors"
             aria-label="GitHub de Emamut"
           >
-            <Github class="w-4 h-4" />
+            <Icon name="simple-icons:github" class="w-4 h-4" />
           </a>
           <a
             href="https://www.linkedin.com/company/emamut/"
@@ -34,7 +34,7 @@ import { Github, Linkedin, Twitter, Mail, Phone, MessageCircle } from '@lucide/a
             class="w-9 h-9 rounded-lg bg-gray-200/80 dark:bg-gray-900 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-white hover:bg-emamut-orange dark:hover:text-white dark:hover:bg-emamut-orange transition-colors"
             aria-label="LinkedIn de Emamut"
           >
-            <Linkedin class="w-4 h-4" />
+            <Icon name="simple-icons:linkedin" class="w-4 h-4" />
           </a>
           <a
             href="https://x.com/emamutDev"
@@ -43,7 +43,7 @@ import { Github, Linkedin, Twitter, Mail, Phone, MessageCircle } from '@lucide/a
             class="w-9 h-9 rounded-lg bg-gray-200/80 dark:bg-gray-900 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-white hover:bg-emamut-orange dark:hover:text-white dark:hover:bg-emamut-orange transition-colors"
             aria-label="X / Twitter de Emamut"
           >
-            <Twitter class="w-4 h-4" />
+            <Icon name="simple-icons:x" class="w-4 h-4" />
           </a>
           <a
             href="https://wa.me/573023122904/?text=¡Hola!%20Necesito%20más%20información"
@@ -52,7 +52,7 @@ import { Github, Linkedin, Twitter, Mail, Phone, MessageCircle } from '@lucide/a
             class="w-9 h-9 rounded-lg bg-gray-200/80 dark:bg-gray-900 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-white hover:bg-emamut-orange dark:hover:text-white dark:hover:bg-emamut-orange transition-colors"
             aria-label="WhatsApp de Emamut"
           >
-            <MessageCircle class="w-4 h-4" />
+            <Icon name="simple-icons:whatsapp" class="w-4 h-4" />
           </a>
         </div>
       </div>
@@ -116,13 +116,13 @@ import { Github, Linkedin, Twitter, Mail, Phone, MessageCircle } from '@lucide/a
         <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-900 dark:text-white mb-4">Contacto</h3>
         <ul class="space-y-2.5 text-sm text-gray-600 dark:text-gray-400">
           <li class="flex items-center space-x-2">
-            <Mail class="w-4 h-4 text-emamut-orange shrink-0" />
+            <Icon name="lucide:mail" class="w-4 h-4 text-emamut-orange shrink-0" />
             <a href="mailto:contacto@emamut.com" class="hover:text-emamut-orange transition-colors">
               contacto@emamut.com
             </a>
           </li>
           <li class="flex items-center space-x-2">
-            <Phone class="w-4 h-4 text-emamut-orange shrink-0" />
+            <Icon name="lucide:phone" class="w-4 h-4 text-emamut-orange shrink-0" />
             <a href="tel:+573023122904" class="hover:text-emamut-orange transition-colors">
               +57 302 312 2904
             </a>
@@ -134,7 +134,7 @@ import { Github, Linkedin, Twitter, Mail, Phone, MessageCircle } from '@lucide/a
               rel="noopener noreferrer"
               class="inline-flex items-center space-x-2 px-4 py-2 text-xs font-semibold rounded-lg bg-emamut-orange text-white hover:bg-emamut-orange-dark transition-colors"
             >
-              <MessageCircle class="w-3.5 h-3.5" />
+              <Icon name="simple-icons:whatsapp" class="w-3.5 h-3.5" />
               <span>Chatear por WhatsApp</span>
             </a>
           </li>

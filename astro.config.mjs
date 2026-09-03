@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import partytown from '@astrojs/partytown';
+import icon from 'astro-icon';
 
 import tailwindcss from '@tailwindcss/vite';
 
@@ -13,6 +14,7 @@ export default defineConfig({
         forward: ['dataLayer.push'],
       },
     }),
+    icon(),
   ],
 
   vite: {
