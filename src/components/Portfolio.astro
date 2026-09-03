@@ -1,5 +1,5 @@
 ---
-import { ExternalLink } from '@lucide/astro';
+import { Icon } from 'astro-icon/components';
 
 interface PortfolioItem {
   title: string;
@@ -123,11 +123,11 @@ const projects = items.length > 0
                     class="w-12 h-12 rounded-full bg-emamut-orange text-white flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform duration-300"
                     aria-label={`Visitar sitio web de ${project.title}`}
                   >
-                    <ExternalLink class="w-5 h-5" />
+                    <Icon name="lucide:external-link" class="w-5 h-5" />
                   </a>
                 ) : (
                   <span class="w-12 h-12 rounded-full bg-emamut-orange text-white flex items-center justify-center shadow-lg">
-                    <ExternalLink class="w-5 h-5" />
+                    <Icon name="lucide:external-link" class="w-5 h-5" />
                   </span>
                 )}
               </div>

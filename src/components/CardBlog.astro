@@ -15,7 +15,7 @@ interface Props {
   };
 }
 
-import { User, ArrowRight } from '@lucide/astro';
+import { Icon } from 'astro-icon/components';
 
 const { title, thumbnail, slug, content } = Astro.props;
 
@@ -52,7 +52,7 @@ const imgSrc = thumbnail?.responsiveImage?.src || '/placeholder.svg';
 
     <div class="pt-4 border-t border-gray-100 dark:border-gray-700 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
       <div class="flex items-center space-x-1.5">
-        <User class="w-3.5 h-3.5 text-emamut-orange" />
+        <Icon name="lucide:user" class="w-3.5 h-3.5 text-emamut-orange" />
         <span>Emamut</span>
       </div>
       <a
@@ -60,7 +60,7 @@ const imgSrc = thumbnail?.responsiveImage?.src || '/placeholder.svg';
         class="inline-flex items-center gap-1 font-semibold text-emamut-orange hover:text-emamut-orange-dark transition-colors"
       >
         <span>Leer más</span>
-        <ArrowRight class="w-3.5 h-3.5" />
+        <Icon name="lucide:arrow-right" class="w-3.5 h-3.5" />
       </a>
     </div>
   </div>

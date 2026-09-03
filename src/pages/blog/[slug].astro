@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import { marked } from 'marked';
 import { getPosts } from '../../lib/datocms.js';
-import { ArrowLeft, Calendar, User, MessageCircle } from '@lucide/astro';
+import { Icon } from 'astro-icon/components';
 
 export async function getStaticPaths() {
   const { allBlogs } = await getPosts();
@@ -41,7 +41,7 @@ const imageSrc = post.thumbnail?.responsiveImage?.src || '/placeholder.svg';
         href="/blog"
         class="inline-flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-emamut-orange dark:hover:text-emamut-orange transition-colors mb-8 group"
       >
-        <ArrowLeft class="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+        <Icon name="lucide:arrow-left" class="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
         <span>Volver a todos los artículos</span>
       </a>
 
@@ -56,11 +56,11 @@ const imageSrc = post.thumbnail?.responsiveImage?.src || '/placeholder.svg';
 
         <div class="flex items-center gap-6 pt-2 text-sm text-gray-500 dark:text-gray-400 border-y border-gray-100 dark:border-gray-800 py-3">
           <div class="flex items-center gap-2">
-            <User class="w-4 h-4 text-emamut-orange" />
+            <Icon name="lucide:user" class="w-4 h-4 text-emamut-orange" />
             <span class="font-medium text-gray-700 dark:text-gray-300">Equipo Emamut</span>
           </div>
           <div class="flex items-center gap-2">
-            <Calendar class="w-4 h-4" />
+            <Icon name="lucide:calendar" class="w-4 h-4" />
             <span>Actualizado recientemente</span>
           </div>
         </div>
@@ -100,7 +100,7 @@ const imageSrc = post.thumbnail?.responsiveImage?.src || '/placeholder.svg';
           rel="noopener noreferrer"
           class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm bg-emamut-orange hover:bg-emamut-orange-dark text-white shadow-md hover:shadow-lg transition-all shrink-0"
         >
-          <MessageCircle class="w-4 h-4" />
+          <Icon name="simple-icons:whatsapp" class="w-4 h-4" />
           <span>Consultar por WhatsApp</span>
         </a>
       </div>

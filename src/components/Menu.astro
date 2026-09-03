@@ -1,5 +1,5 @@
 ---
-import { Menu as MenuIcon, X as CloseIcon } from '@lucide/astro';
+import { Icon } from 'astro-icon/components';
 import ThemeToggle from './ThemeToggle.astro';
 ---
 
@@ -57,10 +57,10 @@ import ThemeToggle from './ThemeToggle.astro';
           aria-controls="mobile-menu"
         >
           <span id="menu-icon-open" class="block">
-            <MenuIcon class="w-6 h-6" />
+            <Icon name="lucide:menu" class="w-6 h-6" />
           </span>
           <span id="menu-icon-close" class="hidden">
-            <CloseIcon class="w-6 h-6" />
+            <Icon name="lucide:x" class="w-6 h-6" />
           </span>
         </button>
       </div>

@@ -1,5 +1,5 @@
 ---
-import { User, Calendar, ArrowRight } from '@lucide/astro';
+import { Icon } from 'astro-icon/components';
 
 interface DatoThumbnail {
   responsiveImage?: {
@@ -146,12 +146,12 @@ for (const mock of mockPosts) {
               <!-- Author / Date / Read time -->
               <div class="pt-4 border-t border-gray-100 dark:border-gray-700 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
                 <div class="flex items-center space-x-1.5">
-                  <User class="w-3.5 h-3.5 text-emamut-orange" />
+                  <Icon name="lucide:user" class="w-3.5 h-3.5 text-emamut-orange" />
                   <span class="truncate max-w-[100px]">{post.author}</span>
                 </div>
                 <div class="flex items-center space-x-3">
                   <div class="flex items-center space-x-1">
-                    <Calendar class="w-3.5 h-3.5" />
+                    <Icon name="lucide:calendar" class="w-3.5 h-3.5" />
                     <span>{post.date}</span>
                   </div>
                   <span>•</span>
@@ -171,7 +171,7 @@ for (const mock of mockPosts) {
         class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-sm border-2 border-emamut-orange text-emamut-orange hover:bg-emamut-orange hover:text-white dark:border-emamut-orange dark:text-emamut-orange transition-all duration-200"
       >
         <span>Ver Todos los Artículos</span>
-        <ArrowRight class="w-4 h-4" />
+        <Icon name="lucide:arrow-right" class="w-4 h-4" />
       </a>
     </div>
   </div>
