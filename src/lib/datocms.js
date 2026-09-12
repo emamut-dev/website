@@ -26,9 +26,12 @@ export async function getFeatures() {
 export async function getPortfolio() {
   const query = `
     {
-      allPortfolios {
+      allPortfolios(orderBy: position_ASC) {
         title
         link
+        activo
+        tags
+        caption
         image {
           url
         }
@@ -59,10 +62,11 @@ export async function getSocialNetworks() {
 export async function getHomePosts() {
   const query = `
     query MyQuery {
-      allBlogs(orderBy: _createdAt_ASC, first: "3") {
+      allBlogs(orderBy: _createdAt_DESC, first: "3") {
         title
         content
         slug
+        tags
         thumbnail {
           responsiveImage(imgixParams: {auto: format, w: 500, h: 200, fit: fill}) {
             srcSet
@@ -88,10 +92,11 @@ export async function getHomePosts() {
 export async function getArchivePosts() {
   const query = `
     query MyQuery {
-      allBlogs(orderBy: _createdAt_ASC) {
+      allBlogs(orderBy: _createdAt_DESC) {
         title
         content
         slug
+        tags
         thumbnail {
           responsiveImage(imgixParams: {auto: format, w: 500, h: 200, fit: fill}) {
             srcSet
@@ -117,10 +122,11 @@ export async function getArchivePosts() {
 export async function getPosts() {
   const query = `
     query MyQuery {
-      allBlogs(orderBy: _createdAt_ASC) {
+      allBlogs(orderBy: _createdAt_DESC) {
         title
         content
         slug
+        tags
         thumbnail {
           responsiveImage(imgixParams: {auto: format, w: 1200, h: 600, fit: crop}) {
             srcSet

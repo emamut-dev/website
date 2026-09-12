@@ -13,44 +13,92 @@ interface Props {
       alt?: string;
     };
   };
+  tags?: string[] | string;
+  delay?: number | string;
 }
 
-import { Icon } from 'astro-icon/components';
+import { Icon } from "astro-icon/components";
 
-const { title, thumbnail, slug, content } = Astro.props;
+const { title, thumbnail, slug, content, tags, delay = 0 } = Astro.props;
 
-const plainText = content ? content.replace(/[#*`_\[\]]/g, '').slice(0, 140) + '...' : '';
-const imgSrc = thumbnail?.responsiveImage?.src || '/placeholder.svg';
+const parseTags = (tags?: string[] | string): string[] => {
+  if (!tags) return [];
+  if (Array.isArray(tags))
+    return tags.map((t) => String(t).trim()).filter(Boolean);
+  if (typeof tags === "string") {
+    return tags
+      .split(/[,;\n]+/)
+      .map((t) => t.trim())
+      .filter((t) => t.length > 0);
+  }
+  return [];
+};
+
+const parsedTags = parseTags(tags);
+const plainText = content
+  ? content.replace(/[#*`_\[\]]/g, "").slice(0, 140) + "..."
+  : "";
+const imgSrc = thumbnail?.responsiveImage?.src || "/placeholder.svg";
 ---
 
-<article class="group flex flex-col bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl border border-gray-100 dark:border-gray-700/60 transition-all duration-300 hover:-translate-y-1">
-  <div class="relative w-full h-52 overflow-hidden bg-gray-100 dark:bg-gray-950">
-    <a href={`/blog/${slug}`} class="block w-full h-full" aria-label={`Leer artículo: ${title}`}>
+<article
+  data-animate="fade-up"
+  data-animate-delay={String(delay)}
+  class="group flex flex-col bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl border border-gray-100 dark:border-gray-700/60 hover:border-emamut-orange/30 transition-all duration-300 hover:-translate-y-2"
+>
+  <div
+    class="relative w-full h-52 overflow-hidden bg-gray-100 dark:bg-gray-950 skeleton-shimmer"
+  >
+    <a
+      href={`/blog/${slug}`}
+      class="block w-full h-full"
+      aria-label={`Leer artículo: ${title}`}
+    >
       <img
         src={imgSrc}
         alt={thumbnail?.responsiveImage?.alt || title}
-        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        class="lazy-img w-full h-full object-cover group-hover:scale-108 transition-all duration-500 ease-out"
         loading="lazy"
+        decoding="async"
+        onload="this.classList.add('loaded')"
       />
     </a>
-    <span class="absolute top-3 left-3 px-3 py-1 text-xs font-semibold rounded-full bg-emamut-orange text-white shadow-md">
-      Artículo
-    </span>
+    {
+      parsedTags.length > 0 ? (
+        <div class="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10">
+          {parsedTags.map((tag) => (
+            <span class="px-3 py-1 text-xs font-semibold rounded-full bg-emamut-orange text-white shadow-md">
+              {tag}
+            </span>
+          ))}
+        </div>
+      ) : (
+        <span class="absolute top-3 left-3 px-3 py-1 text-xs font-semibold rounded-full bg-emamut-orange text-white shadow-md">
+          Artículo
+        </span>
+      )
+    }
   </div>
 
   <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
     <div class="space-y-2">
-      <h2 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-emamut-orange transition-colors line-clamp-2">
+      <h2
+        class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-emamut-orange transition-colors line-clamp-2"
+      >
         <a href={`/blog/${slug}`}>
           {title}
         </a>
       </h2>
-      <p class="text-sm text-gray-600 dark:text-gray-300 line-clamp-3 leading-relaxed">
+      <p
+        class="text-sm text-gray-600 dark:text-gray-300 line-clamp-3 leading-relaxed"
+      >
         {plainText}
       </p>
     </div>
 
-    <div class="pt-4 border-t border-gray-100 dark:border-gray-700 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+    <div
+      class="pt-4 border-t border-gray-100 dark:border-gray-700 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400"
+    >
       <div class="flex items-center space-x-1.5">
         <Icon name="lucide:user" class="w-3.5 h-3.5 text-emamut-orange" />
         <span>Emamut</span>

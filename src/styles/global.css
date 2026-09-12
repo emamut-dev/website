@@ -3,11 +3,11 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-emamut-orange: #FF6B35;
-  --color-emamut-orange-dark: #E55A2B;
-  --color-emamut-orange-light: #FF8A5C;
+  --color-emamut-orange: #ff6b35;
+  --color-emamut-orange-dark: #e55a2b;
+  --color-emamut-orange-light: #ff8a5c;
   --color-emamut-gray: #111827;
-  --font-geist: 'Geist', sans-serif;
+  --font-geist: "Geist", sans-serif;
 }
 
 @layer base {
@@ -17,5 +17,159 @@
 
   body {
     font-family: var(--font-geist);
+  }
+}
+
+/* Scroll progress bar indicator */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--color-emamut-orange),
+    var(--color-emamut-orange-light)
+  );
+  z-index: 100;
+  transition: width 0.1s cubic-bezier(0.1, 0.9, 0.2, 1);
+  pointer-events: none;
+}
+
+/* Float animation for showcase elements */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: float 4.5s ease-in-out infinite;
+}
+
+/* Shimmer placeholder for lazy loading images */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(229, 231, 235, 0.5) 25%,
+    rgba(243, 244, 246, 0.9) 50%,
+    rgba(229, 231, 235, 0.5) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.8s infinite;
+}
+
+:is(.dark) .skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(31, 41, 55, 0.6) 25%,
+    rgba(55, 65, 81, 0.9) 50%,
+    rgba(31, 41, 55, 0.6) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.8s infinite;
+}
+
+/* Lazy image smooth reveal */
+.lazy-img {
+  opacity: 0;
+  transition:
+    opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lazy-img.loaded {
+  opacity: 1;
+}
+
+/* Scroll reveal animations */
+[data-animate] {
+  opacity: 0;
+  transition-property: opacity, transform;
+  transition-duration: 0.65s;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+[data-animate="fade-up"] {
+  transform: translateY(28px);
+}
+
+[data-animate="fade-down"] {
+  transform: translateY(-24px);
+}
+
+[data-animate="fade-left"] {
+  transform: translateX(-28px);
+}
+
+[data-animate="fade-right"] {
+  transform: translateX(28px);
+}
+
+[data-animate="zoom-in"] {
+  transform: scale(0.94);
+}
+
+[data-animate="fade"] {
+  transform: none;
+}
+
+[data-animate].is-visible {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+/* Navigation link animated underline */
+.nav-link-animated {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-link-animated::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-emamut-orange);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 9999px;
+}
+
+.nav-link-animated:hover::after,
+.nav-link-animated:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  [data-animate],
+  .lazy-img,
+  .animate-float,
+  .skeleton-shimmer,
+  #scroll-progress {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
   }
 }
