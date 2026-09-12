@@ -1,13 +1,19 @@
 ---
-import { Icon } from 'astro-icon/components';
-import ThemeToggle from './ThemeToggle.astro';
+import { Icon } from "astro-icon/components";
+import ThemeToggle from "./ThemeToggle.astro";
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
+<header
+  class="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 transition-colors duration-300"
+>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-20">
       <!-- Logo de Emamut -->
-      <a href="/#hero" class="flex items-center focus:outline-none" aria-label="Ir al inicio de Emamut">
+      <a
+        href="/#hero"
+        class="flex items-center focus:outline-none"
+        aria-label="Ir al inicio de Emamut"
+      >
         <img
           src="/logo-emamut.png"
           alt="Emamut Logo"
@@ -17,28 +23,31 @@ import ThemeToggle from './ThemeToggle.astro';
       </a>
 
       <!-- Navegación Desktop -->
-      <nav class="hidden md:flex items-center space-x-8" aria-label="Navegación principal">
+      <nav
+        class="hidden md:flex items-center space-x-8"
+        aria-label="Navegación principal"
+      >
         <a
           href="/#hero"
-          class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-emamut-orange dark:hover:text-emamut-orange transition-colors"
+          class="nav-link-animated text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-emamut-orange dark:hover:text-emamut-orange transition-colors"
         >
           Inicio
         </a>
         <a
           href="/#portfolio"
-          class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-emamut-orange dark:hover:text-emamut-orange transition-colors"
+          class="nav-link-animated text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-emamut-orange dark:hover:text-emamut-orange transition-colors"
         >
           Portfolio
         </a>
         <a
           href="/#blog"
-          class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-emamut-orange dark:hover:text-emamut-orange transition-colors"
+          class="nav-link-animated text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-emamut-orange dark:hover:text-emamut-orange transition-colors"
         >
           Blog
         </a>
         <a
           href="/#contact"
-          class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-emamut-orange dark:hover:text-emamut-orange transition-colors"
+          class="nav-link-animated text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-emamut-orange dark:hover:text-emamut-orange transition-colors"
         >
           Contacto
         </a>
@@ -98,9 +107,16 @@ import ThemeToggle from './ThemeToggle.astro';
     </a>
 
     <!-- Fila de cambio de tema dentro del menú desplegable -->
-    <div class="pt-3 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between px-3">
-      <span class="text-sm font-medium text-gray-600 dark:text-gray-400">Tema del sitio</span>
-      <ThemeToggle showLabel={true} class="bg-gray-100 dark:bg-gray-800 px-3 py-1.5" />
+    <div
+      class="pt-3 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between px-3"
+    >
+      <span class="text-sm font-medium text-gray-600 dark:text-gray-400"
+        >Tema del sitio</span
+      >
+      <ThemeToggle
+        showLabel={true}
+        class="bg-gray-100 dark:bg-gray-800 px-3 py-1.5"
+      />
     </div>
   </div>
 </header>
@@ -108,27 +124,27 @@ import ThemeToggle from './ThemeToggle.astro';
 <script is:inline>
   (() => {
     const initMenu = () => {
-      const btn = document.getElementById('mobile-menu-btn');
-      const menu = document.getElementById('mobile-menu');
-      const iconOpen = document.getElementById('menu-icon-open');
-      const iconClose = document.getElementById('menu-icon-close');
-      const navLinks = document.querySelectorAll('.mobile-nav-link');
+      const btn = document.getElementById("mobile-menu-btn");
+      const menu = document.getElementById("mobile-menu");
+      const iconOpen = document.getElementById("menu-icon-open");
+      const iconClose = document.getElementById("menu-icon-close");
+      const navLinks = document.querySelectorAll(".mobile-nav-link");
 
       if (!btn || !menu || !iconOpen || !iconClose) return;
 
       const toggleMenu = () => {
-        const isExpanded = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', String(!isExpanded));
-        menu.classList.toggle('hidden');
-        iconOpen.classList.toggle('hidden');
-        iconClose.classList.toggle('hidden');
+        const isExpanded = btn.getAttribute("aria-expanded") === "true";
+        btn.setAttribute("aria-expanded", String(!isExpanded));
+        menu.classList.toggle("hidden");
+        iconOpen.classList.toggle("hidden");
+        iconClose.classList.toggle("hidden");
       };
 
       const closeMenu = () => {
-        btn.setAttribute('aria-expanded', 'false');
-        menu.classList.add('hidden');
-        iconOpen.classList.remove('hidden');
-        iconClose.classList.add('hidden');
+        btn.setAttribute("aria-expanded", "false");
+        menu.classList.add("hidden");
+        iconOpen.classList.remove("hidden");
+        iconClose.classList.add("hidden");
       };
 
       btn.onclick = (e) => {
@@ -140,18 +156,18 @@ import ThemeToggle from './ThemeToggle.astro';
         link.onclick = () => closeMenu();
       });
 
-      document.addEventListener('click', (e) => {
+      document.addEventListener("click", (e) => {
         if (!menu.contains(e.target) && !btn.contains(e.target)) {
           closeMenu();
         }
       });
     };
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initMenu);
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initMenu);
     } else {
       initMenu();
     }
-    document.addEventListener('astro:after-swap', initMenu);
+    document.addEventListener("astro:after-swap", initMenu);
   })();
 </script>
