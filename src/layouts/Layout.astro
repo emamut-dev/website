@@ -28,8 +28,14 @@ import Footer from "../components/Footer.astro";
     <link rel="icon" href="/favicon-16x16.png" sizes="16x16" />
     <link rel="icon" href="/favicon-32x32.png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#FF6B35" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,500&display=swap"
+      rel="stylesheet"
+    />
 
     <meta name="generator" content={Astro.generator} />
     <title>{title} | Emamut - Soluciones Tecnológicas Innovadoras</title>
@@ -84,7 +90,7 @@ import Footer from "../components/Footer.astro";
     </script>
   </head>
   <body
-    class="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-200 antialiased selection:bg-emamut-orange selection:text-white flex flex-col relative"
+    class="min-h-screen bg-pumice dark:bg-obsidian text-obsidian dark:text-limestone font-body font-medium transition-colors duration-200 antialiased selection:bg-ember selection:text-obsidian flex flex-col relative"
   >
     <!-- Barra de progreso de lectura / scroll -->
     <div id="scroll-progress" aria-hidden="true"></div>
@@ -95,12 +101,12 @@ import Footer from "../components/Footer.astro";
     </main>
     <Footer />
 
-    <!-- Botón flotante para volver arriba -->
+    <!-- Botón flotante para volver arriba (Caldera unshadowed pill) -->
     <button
       id="back-to-top"
       type="button"
       aria-label="Volver arriba"
-      class="fixed bottom-6 right-6 z-40 p-3 rounded-full bg-emamut-orange hover:bg-emamut-orange-dark text-white shadow-xl shadow-orange-500/30 opacity-0 translate-y-6 pointer-events-none transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-emamut-orange/50 cursor-pointer"
+      class="fixed bottom-6 right-6 z-40 p-3.5 rounded-full bg-ember hover:bg-ember-dark text-obsidian border border-obsidian/20 opacity-0 translate-y-6 pointer-events-none transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-ember cursor-pointer"
     >
       <svg
         class="w-5 h-5"

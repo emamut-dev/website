@@ -3,15 +3,16 @@ import { Icon } from "astro-icon/components";
 ---
 
 <footer
-  class="bg-gray-50 dark:bg-gray-950 text-gray-600 dark:text-gray-300 pt-16 pb-12 border-t border-gray-200 dark:border-gray-800 transition-colors"
+  class="bg-pumice dark:bg-obsidian text-obsidian dark:text-limestone pt-16 pb-12 transition-colors relative border-t-[1.5px] border-dotted border-obsidian/30 dark:border-white/20"
 >
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <!-- Top Branding & Grid -->
     <div
-      class="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10 mb-12"
+      class="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-12 lg:gap-10"
     >
-      <!-- Columna 1: Branding (Ancho completo en móvil) -->
+      <!-- Columna 1: Branding (5 cols) -->
       <div
-        class="col-span-2 sm:col-span-2 lg:col-span-1 space-y-4"
+        class="col-span-2 sm:col-span-2 lg:col-span-5 space-y-5"
         data-animate="fade-up"
       >
         <a
@@ -22,24 +23,24 @@ import { Icon } from "astro-icon/components";
           <img
             src="/logo-emamut.png"
             alt="Emamut Logo"
-            class="h-12 w-auto dark:brightness-0 dark:invert transition-all"
+            class="h-10 sm:h-12 w-auto dark:brightness-0 dark:invert transition-all"
             loading="lazy"
             decoding="async"
           />
         </a>
-        <p
-          class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed max-w-sm"
-        >
-          Transformamos ideas en soluciones tecnológicas innovadoras.
-          Desarrollamos software a medida, aplicaciones web y móviles para
-          impulsar tu negocio.
+        <p class="text-sm text-obsidian/75 dark:text-limestone/75 leading-relaxed max-w-sm font-medium">
+          Transformamos ideas complejas en soluciones tecnológicas innovadoras.
+          Desarrollamos software a medida, aplicaciones web y móviles de alto
+          rendimiento con arquitectura moderna.
         </p>
-        <div class="flex items-center space-x-3 pt-2">
+
+        <!-- Social Pills -->
+        <div class="flex items-center space-x-2.5 pt-1">
           <a
             href="https://github.com/orgs/emamut-dev/"
             target="_blank"
             rel="noopener noreferrer"
-            class="w-9 h-9 rounded-lg bg-gray-200/80 dark:bg-gray-900 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-white hover:bg-emamut-orange dark:hover:text-white dark:hover:bg-emamut-orange hover:-translate-y-1 hover:shadow-md active:translate-y-0 transition-all duration-200"
+            class="w-10 h-10 rounded-full bg-limestone dark:bg-white/10 flex items-center justify-center text-obsidian dark:text-chalk hover:bg-ember hover:text-obsidian transition-colors"
             aria-label="GitHub de Emamut"
           >
             <Icon name="simple-icons:github" class="w-4 h-4" />
@@ -48,7 +49,7 @@ import { Icon } from "astro-icon/components";
             href="https://www.linkedin.com/company/emamut/"
             target="_blank"
             rel="noopener noreferrer"
-            class="w-9 h-9 rounded-lg bg-gray-200/80 dark:bg-gray-900 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-white hover:bg-emamut-orange dark:hover:text-white dark:hover:bg-emamut-orange hover:-translate-y-1 hover:shadow-md active:translate-y-0 transition-all duration-200"
+            class="w-10 h-10 rounded-full bg-limestone dark:bg-white/10 flex items-center justify-center text-obsidian dark:text-chalk hover:bg-ember hover:text-obsidian transition-colors"
             aria-label="LinkedIn de Emamut"
           >
             <Icon name="simple-icons:linkedin" class="w-4 h-4" />
@@ -57,7 +58,7 @@ import { Icon } from "astro-icon/components";
             href="https://x.com/emamutDev"
             target="_blank"
             rel="noopener noreferrer"
-            class="w-9 h-9 rounded-lg bg-gray-200/80 dark:bg-gray-900 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-white hover:bg-emamut-orange dark:hover:text-white dark:hover:bg-emamut-orange hover:-translate-y-1 hover:shadow-md active:translate-y-0 transition-all duration-200"
+            class="w-10 h-10 rounded-full bg-limestone dark:bg-white/10 flex items-center justify-center text-obsidian dark:text-chalk hover:bg-ember hover:text-obsidian transition-colors"
             aria-label="X / Twitter de Emamut"
           >
             <Icon name="simple-icons:x" class="w-4 h-4" />
@@ -66,7 +67,7 @@ import { Icon } from "astro-icon/components";
             href="https://wa.me/573023122904/?text=¡Hola!%20Necesito%20más%20información"
             target="_blank"
             rel="noopener noreferrer"
-            class="w-9 h-9 rounded-lg bg-gray-200/80 dark:bg-gray-900 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-white hover:bg-emamut-orange dark:hover:text-white dark:hover:bg-emamut-orange hover:-translate-y-1 hover:shadow-md active:translate-y-0 transition-all duration-200"
+            class="w-10 h-10 rounded-full bg-limestone dark:bg-white/10 flex items-center justify-center text-obsidian dark:text-chalk hover:bg-ember hover:text-obsidian transition-colors"
             aria-label="WhatsApp de Emamut"
           >
             <Icon name="simple-icons:whatsapp" class="w-4 h-4" />
@@ -74,145 +75,104 @@ import { Icon } from "astro-icon/components";
         </div>
       </div>
 
-      <!-- Columna 2: Servicios (Columna 1 en móvil) -->
+      <!-- Columna 2: Servicios (2 cols) -->
       <div
-        class="col-span-1 space-y-3"
+        class="col-span-1 lg:col-span-2 space-y-4"
         data-animate="fade-up"
         data-animate-delay="50"
       >
-        <h3
-          class="text-sm font-semibold uppercase tracking-wider text-gray-900 dark:text-white"
-        >
+        <h3 class="text-xs font-semibold uppercase tracking-widest text-obsidian dark:text-chalk">
           Servicios
         </h3>
-        <ul class="space-y-2.5 text-sm text-gray-600 dark:text-gray-400">
+        <ul class="space-y-3 text-sm font-medium text-obsidian/75 dark:text-limestone/75">
           <li>
-            <a
-              href="/#portfolio"
-              class="hover:text-emamut-orange transition-colors"
-            >
+            <a href="/#portfolio" class="hover:text-ember transition-colors">
               Desarrollo Web
             </a>
           </li>
           <li>
-            <a
-              href="/#portfolio"
-              class="hover:text-emamut-orange transition-colors"
-            >
+            <a href="/#portfolio" class="hover:text-ember transition-colors">
               Apps Móviles
             </a>
           </li>
           <li>
-            <a
-              href="/#portfolio"
-              class="hover:text-emamut-orange transition-colors"
-            >
+            <a href="/#portfolio" class="hover:text-ember transition-colors">
               E-Commerce
             </a>
           </li>
           <li>
-            <a
-              href="/#portfolio"
-              class="hover:text-emamut-orange transition-colors"
-            >
-              Consultoría IT & Cloud
+            <a href="/#portfolio" class="hover:text-ember transition-colors">
+              Cloud & DevOps
             </a>
           </li>
         </ul>
       </div>
 
-      <!-- Columna 3: Empresa (Columna 2 en móvil, junta con Servicios) -->
+      <!-- Columna 3: Empresa (2 cols) -->
       <div
-        class="col-span-1 space-y-3"
+        class="col-span-1 lg:col-span-2 space-y-4"
         data-animate="fade-up"
         data-animate-delay="100"
       >
-        <h3
-          class="text-sm font-semibold uppercase tracking-wider text-gray-900 dark:text-white"
-        >
+        <h3 class="text-xs font-semibold uppercase tracking-widest text-obsidian dark:text-chalk">
           Empresa
         </h3>
-        <ul class="space-y-2.5 text-sm text-gray-600 dark:text-gray-400">
+        <ul class="space-y-3 text-sm font-medium text-obsidian/75 dark:text-limestone/75">
           <li>
-            <a href="/#hero" class="hover:text-emamut-orange transition-colors">
-              Sobre Nosotros
+            <a href="/#hero" class="hover:text-ember transition-colors">
+              Inicio
             </a>
           </li>
           <li>
-            <a
-              href="/#portfolio"
-              class="hover:text-emamut-orange transition-colors"
-            >
+            <a href="/#portfolio" class="hover:text-ember transition-colors">
               Portfolio
             </a>
           </li>
           <li>
-            <a href="/blog" class="hover:text-emamut-orange transition-colors">
+            <a href="/blog" class="hover:text-ember transition-colors">
               Blog Técnico
             </a>
           </li>
           <li>
-            <a
-              href="/#contact"
-              class="hover:text-emamut-orange transition-colors"
-            >
+            <a href="/#contact" class="hover:text-ember transition-colors">
               Contacto
             </a>
           </li>
         </ul>
       </div>
 
-      <!-- Columna 4: Contacto directo (Ancho completo en móvil) -->
+      <!-- Columna 4: Contacto directo (3 cols) -->
       <div
-        class="col-span-2 sm:col-span-2 lg:col-span-1 space-y-3"
+        class="col-span-2 sm:col-span-2 lg:col-span-3 space-y-4"
         data-animate="fade-up"
         data-animate-delay="150"
       >
-        <h3
-          class="text-sm font-semibold uppercase tracking-wider text-gray-900 dark:text-white"
-        >
-          Contacto
+        <h3 class="text-xs font-semibold uppercase tracking-widest text-obsidian dark:text-chalk">
+          Contacto Directo
         </h3>
-        <ul
-          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2.5 text-sm text-gray-600 dark:text-gray-400"
-        >
-          <li class="flex items-center space-x-2">
-            <Icon
-              name="lucide:mail"
-              class="w-4 h-4 text-emamut-orange shrink-0"
-            />
-            <a
-              href="mailto:contacto@emamut.com"
-              class="hover:text-emamut-orange transition-colors"
-            >
+        <ul class="space-y-3 text-sm font-medium text-obsidian/75 dark:text-limestone/75">
+          <li class="flex items-center space-x-2.5">
+            <Icon name="lucide:mail" class="w-4 h-4 text-ember shrink-0" />
+            <a href="mailto:contacto@emamut.com" class="hover:text-ember transition-colors">
               contacto@emamut.com
             </a>
           </li>
-          <li class="flex items-center space-x-2">
-            <Icon
-              name="lucide:phone"
-              class="w-4 h-4 text-emamut-orange shrink-0"
-            />
-            <a
-              href="tel:+573023122904"
-              class="hover:text-emamut-orange transition-colors"
-            >
+          <li class="flex items-center space-x-2.5">
+            <Icon name="lucide:phone" class="w-4 h-4 text-ember shrink-0" />
+            <a href="tel:+573023122904" class="hover:text-ember transition-colors">
               +57 302 312 2904
             </a>
           </li>
-          <li class="flex items-center space-x-2">
-            <Icon
-              name="lucide:map-pin"
-              class="w-4 h-4 text-emamut-orange shrink-0"
-            />
+          <li class="flex items-center space-x-2.5">
+            <Icon name="lucide:map-pin" class="w-4 h-4 text-ember shrink-0" />
             <span>Bogotá, Colombia</span>
           </li>
-          <li class="pt-1 sm:col-span-2 lg:col-span-1">
+          <li class="pt-2">
             <a
               href="https://wa.me/573023122904/?text=¡Hola!%20Quisiera%20agendar%20una%20consulta"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center space-x-2 px-4 py-2 text-xs font-semibold rounded-lg bg-emamut-orange text-white hover:bg-emamut-orange-dark hover:shadow-md transition-all"
+              class="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full text-xs font-medium bg-ember hover:bg-ember-dark text-obsidian transition-transform hover:scale-105"
             >
               <Icon name="simple-icons:whatsapp" class="w-3.5 h-3.5" />
               <span>Chatear por WhatsApp</span>
@@ -222,15 +182,16 @@ import { Icon } from "astro-icon/components";
       </div>
     </div>
 
-    <!-- Barra inferior -->
+    <!-- Barra inferior con Dotted Divider -->
     <div
-      class="border-t border-gray-200 dark:border-gray-800/80 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 dark:text-gray-400 gap-4"
+      class="border-t border-dotted border-obsidian/20 dark:border-white/20 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-obsidian/60 dark:text-limestone/60 gap-4 font-medium"
     >
       <p>
         &copy; {new Date().getFullYear()} Emamut. Todos los derechos reservados.
       </p>
-      <p class="flex items-center gap-1">
-        Construido con tecnología moderna para emprendedores.
+      <p class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-ember"></span>
+        Caldera Design System &middot; Hecho para escalar
       </p>
     </div>
   </div>

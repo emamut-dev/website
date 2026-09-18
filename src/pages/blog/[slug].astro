@@ -50,165 +50,168 @@ const parsedTags = parseTags(post.tags);
 ---
 
 <Layout title={post.title}>
-  <article class="pt-32 pb-24 bg-white dark:bg-gray-900 transition-colors">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="pt-36 pb-24 bg-pumice dark:bg-obsidian transition-colors min-h-screen">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
       <!-- Botón de regreso -->
       <div data-animate="fade-up">
         <a
           href="/blog"
-          class="inline-flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-emamut-orange dark:hover:text-emamut-orange transition-colors mb-8 group"
+          class="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-limestone dark:bg-[#141314] text-obsidian dark:text-limestone border border-obsidian/10 dark:border-white/10 text-xs font-medium uppercase tracking-wider hover:text-ember transition-colors group"
         >
           <Icon
             name="lucide:arrow-left"
-            class="w-4 h-4 group-hover:-translate-x-1 transition-transform"
+            class="w-4 h-4 group-hover:-translate-x-1 transition-transform text-ember"
           />
-          <span>Volver a todos los artículos</span>
+          <span>Volver al archivo de artículos</span>
         </a>
       </div>
 
-      <!-- Cabecera del Artículo -->
-      <header
-        class="space-y-4 mb-10"
-        data-animate="fade-up"
-        data-animate-delay="100"
+      <!-- Contenedor Principal (Limestone card, 40px radius) -->
+      <article
+        class="bg-limestone dark:bg-[#141314] rounded-[40px] p-6 sm:p-12 lg:p-16 border border-obsidian/10 dark:border-white/10 transition-colors space-y-10"
       >
-        {
-          parsedTags.length > 0 ? (
-            <div class="flex flex-wrap gap-2">
-              {parsedTags.map((tag) => (
-                <span class="inline-flex items-center px-3.5 py-1 rounded-full bg-emamut-orange/10 dark:bg-emamut-orange/20 text-emamut-orange text-xs font-semibold tracking-wider uppercase">
-                  {tag}
-                </span>
-              ))}
+        <!-- Cabecera del Artículo -->
+        <header class="space-y-6" data-animate="fade-up">
+          {
+            parsedTags.length > 0 ? (
+              <div class="flex flex-wrap gap-2">
+                {parsedTags.map((tag) => (
+                  <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-sulfur text-obsidian text-xs font-semibold tracking-wider uppercase">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            ) : (
+              <div class="inline-flex items-center px-4 py-1.5 rounded-full bg-sulfur text-obsidian text-xs font-semibold tracking-wider uppercase">
+                Artículo Técnico
+              </div>
+            )
+          }
+
+          <h1
+            class="display-title text-4xl sm:text-5xl lg:text-6xl uppercase text-obsidian dark:text-chalk leading-[0.98]"
+          >
+            {post.title}
+          </h1>
+
+          <div
+            class="flex flex-wrap items-center gap-6 text-xs text-obsidian/60 dark:text-limestone/60 border-y border-dotted border-obsidian/15 dark:border-white/15 py-3.5 font-medium"
+          >
+            <div class="flex items-center gap-2">
+              <Icon name="lucide:user" class="w-3.5 h-3.5 text-ember" />
+              <span>Equipo Emamut</span>
             </div>
-          ) : (
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emamut-orange/10 text-emamut-orange text-xs font-semibold tracking-wider uppercase">
-              Artículo
+            <span>&middot;</span>
+            <div class="flex items-center gap-2">
+              <Icon name="lucide:calendar" class="w-3.5 h-3.5 text-ember" />
+              <span>Publicación Reciente</span>
+            </div>
+          </div>
+        </header>
+
+        <!-- Imagen principal -->
+        {
+          imageSrc && (
+            <div
+              data-animate="fade-up"
+              data-animate-delay="100"
+              class="rounded-[28px] overflow-hidden bg-obsidian/5 dark:bg-obsidian border border-obsidian/10 dark:border-white/10 max-h-[500px] skeleton-shimmer"
+            >
+              <img
+                src={imageSrc}
+                alt={post.title}
+                class="lazy-img loaded w-full h-auto object-cover max-h-[500px]"
+                loading="eager"
+                decoding="async"
+              />
             </div>
           )
         }
-        <h1
-          class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 dark:text-white leading-[1.2] tracking-tight"
-        >
-          {post.title}
-        </h1>
 
+        <!-- Contenido del Artículo -->
         <div
-          class="flex items-center gap-6 pt-2 text-sm text-gray-500 dark:text-gray-400 border-y border-gray-100 dark:border-gray-800 py-3"
-        >
-          <div class="flex items-center gap-2">
-            <Icon name="lucide:user" class="w-4 h-4 text-emamut-orange" />
-            <span class="font-medium text-gray-700 dark:text-gray-300"
-              >Equipo Emamut</span
+          data-animate="fade-up"
+          data-animate-delay="150"
+          class="article-content text-obsidian/85 dark:text-limestone/85 text-base sm:text-lg leading-relaxed font-medium space-y-6"
+          set:html={contenidoHTML}
+        />
+
+        <!-- Tags al pie del artículo -->
+        {
+          parsedTags.length > 0 && (
+            <div
+              data-animate="fade-up"
+              class="pt-6 border-t border-dotted border-obsidian/15 dark:border-white/15 flex items-center gap-2 flex-wrap"
             >
-          </div>
-          <div class="flex items-center gap-2">
-            <Icon name="lucide:calendar" class="w-4 h-4" />
-            <span>Actualizado recientemente</span>
-          </div>
-        </div>
-      </header>
-
-      <!-- Imagen principal -->
-      {
-        imageSrc && (
-          <div
-            data-animate="fade-up"
-            data-animate-delay="150"
-            class="mb-12 rounded-2xl overflow-hidden shadow-xl bg-gray-100 dark:bg-gray-800 border border-gray-100 dark:border-gray-800 max-h-[500px] skeleton-shimmer"
-          >
-            <img
-              src={imageSrc}
-              alt={post.title}
-              class="lazy-img loaded w-full h-auto object-cover max-h-[500px]"
-              loading="eager"
-              decoding="async"
-            />
-          </div>
-        )
-      }
-
-      <!-- Contenido del Artículo -->
-      <div
-        data-animate="fade-up"
-        data-animate-delay="200"
-        class="article-content text-gray-800 dark:text-gray-200 text-lg leading-relaxed space-y-6"
-        set:html={contenidoHTML}
-      />
-
-      <!-- Tags al pie del artículo -->
-      {
-        parsedTags.length > 0 && (
-          <div
-            data-animate="fade-up"
-            data-animate-delay="100"
-            class="mt-12 pt-6 border-t border-gray-100 dark:border-gray-800 flex items-center gap-2 flex-wrap"
-          >
-            <span class="text-sm font-medium text-gray-500 dark:text-gray-400">
-              Etiquetas:
-            </span>
-            {parsedTags.map((tag) => (
-              <span class="px-3 py-1 text-xs font-medium rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300">
-                #{tag}
+              <span class="text-xs font-semibold uppercase text-obsidian/60 dark:text-limestone/60 tracking-wider">
+                Etiquetas:
               </span>
-            ))}
-          </div>
-        )
-      }
+              {parsedTags.map((tag) => (
+                <span class="px-3.5 py-1 text-xs font-medium rounded-full bg-sulfur text-obsidian">
+                  #{tag}
+                </span>
+              ))}
+            </div>
+          )
+        }
 
-      <!-- Callout al final del artículo -->
-      <div
-        data-animate="fade-up"
-        data-animate-delay="100"
-        class="mt-16 bg-gradient-to-br from-gray-50 to-orange-50/50 dark:from-gray-800 dark:to-gray-800/60 rounded-2xl p-8 border border-emamut-orange/20 shadow-lg text-center sm:text-left sm:flex sm:items-center sm:justify-between gap-6"
-      >
-        <div class="space-y-2 mb-6 sm:mb-0">
-          <h3 class="text-xl font-bold text-gray-900 dark:text-white">
-            ¿Necesitas asesoría técnica para tu empresa?
-          </h3>
-          <p class="text-sm text-gray-600 dark:text-gray-300">
-            Contáctanos hoy y descubre cómo podemos ayudarte a proteger y hacer
-            crecer tu negocio digital.
-          </p>
-        </div>
-        <a
-          href="https://wa.me/573023122904/?text=¡Hola!%20Leí%20su%20artículo%20y%20me%20gustaría%20más%20información"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm bg-emamut-orange hover:bg-emamut-orange-dark text-white shadow-md hover:shadow-lg transition-all shrink-0"
+        <!-- Callout al final del artículo (Obsidian card) -->
+        <div
+          data-animate="fade-up"
+          class="mt-12 bg-obsidian rounded-[32px] p-8 sm:p-10 text-chalk border border-chalk/10 text-center sm:text-left sm:flex sm:items-center sm:justify-between gap-6"
         >
-          <Icon name="simple-icons:whatsapp" class="w-4 h-4" />
-          <span>Consultar por WhatsApp</span>
-        </a>
-      </div>
+          <div class="space-y-2 mb-6 sm:mb-0">
+            <span class="text-xs font-mono uppercase text-sulfur tracking-wider block">
+              ASESORÍA TÉCNICA
+            </span>
+            <h3 class="display-title text-2xl sm:text-3xl uppercase text-chalk">
+              ¿Listo para potenciar tu infraestructura?
+            </h3>
+            <p class="text-sm text-chalk/70 font-medium">
+              Contáctanos hoy y diseñemos juntos una solución digital hecha a la medida.
+            </p>
+          </div>
+          <a
+            href="https://wa.me/573023122904/?text=¡Hola!%20Leí%20su%20artículo%20y%20me%20gustaría%20más%20información"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-xs bg-ember hover:bg-ember-dark text-obsidian transition-transform hover:scale-105 shrink-0"
+          >
+            <Icon name="simple-icons:whatsapp" class="w-4 h-4" />
+            <span>Consultar por WhatsApp</span>
+          </a>
+        </div>
+      </article>
     </div>
-  </article>
+  </div>
 </Layout>
 
 <style is:global>
   .article-content h2 {
-    font-size: 1.875rem;
-    font-weight: 700;
+    font-family: var(--font-display);
+    font-size: 2rem;
+    text-transform: uppercase;
     margin-top: 2.5rem;
     margin-bottom: 1rem;
-    color: var(--color-emamut-gray);
+    color: var(--color-obsidian);
   }
   :is(.dark) .article-content h2 {
-    color: #ffffff;
+    color: var(--color-chalk);
   }
   .article-content h3 {
+    font-family: var(--font-display);
     font-size: 1.5rem;
-    font-weight: 600;
+    text-transform: uppercase;
     margin-top: 2rem;
     margin-bottom: 0.75rem;
-    color: var(--color-emamut-gray);
+    color: var(--color-obsidian);
   }
   :is(.dark) .article-content h3 {
-    color: #f3f4f6;
+    color: var(--color-chalk);
   }
   .article-content p {
     margin-bottom: 1.5rem;
-    line-height: 1.8;
+    line-height: 1.75;
   }
   .article-content ul,
   .article-content ol {
@@ -221,29 +224,31 @@ const parsedTags = parseTags(post.tags);
     line-height: 1.7;
   }
   .article-content a {
-    color: #ff6b35;
+    color: var(--color-ember);
     text-decoration: underline;
     text-underline-offset: 4px;
+    font-weight: 600;
   }
   .article-content a:hover {
-    color: #e55a2b;
+    color: var(--color-ember-dark);
   }
   .article-content blockquote {
-    border-left: 4px solid #ff6b35;
-    padding-left: 1rem;
+    border-left: 4px solid var(--color-ember);
+    padding-left: 1.25rem;
     font-style: italic;
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
-    color: #4b5563;
+    color: var(--color-obsidian);
+    opacity: 0.85;
   }
   :is(.dark) .article-content blockquote {
-    color: #9ca3af;
+    color: var(--color-chalk);
   }
   .article-content pre {
-    background-color: #111827;
-    color: #f3f4f6;
+    background-color: var(--color-obsidian);
+    color: var(--color-chalk);
     padding: 1.25rem;
-    border-radius: 0.75rem;
+    border-radius: 20px;
     overflow-x: auto;
     margin-bottom: 1.5rem;
   }

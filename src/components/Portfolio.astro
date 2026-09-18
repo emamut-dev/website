@@ -122,28 +122,28 @@ const projects =
 
 <section
   id="portfolio"
-  class="py-20 bg-white dark:bg-gray-900 transition-colors"
+  class="py-20 bg-pumice dark:bg-obsidian transition-colors"
 >
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
     <!-- Section Header -->
-    <div class="text-center max-w-3xl mx-auto mb-16" data-animate="fade-up">
+    <div class="text-center max-w-3xl mx-auto space-y-4" data-animate="fade-up">
       <div
-        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emamut-orange/10 text-emamut-orange text-xs font-semibold tracking-wider uppercase mb-3"
+        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sulfur text-obsidian text-xs font-semibold tracking-wider uppercase"
       >
-        Casos de Éxito
+        Casos de Éxito &middot; Selección
       </div>
       <h2
-        class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white tracking-tight"
+        class="display-title text-4xl sm:text-6xl lg:text-7xl uppercase text-obsidian dark:text-chalk"
       >
         Nuestro Portfolio
       </h2>
-      <p class="mt-4 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-        Descubre algunos de nuestros proyectos más destacados y las soluciones
-        que hemos desarrollado para nuestros clientes.
+      <p class="text-base sm:text-lg text-obsidian/80 dark:text-limestone/80 leading-relaxed font-medium">
+        Descubre cómo diseñamos y construimos plataformas robustas con código
+        limpio, alto rendimiento y soluciones a medida para cada cliente.
       </p>
     </div>
 
-    <!-- Projects Grid -->
+    <!-- Projects Grid (40px cards, flat unshadowed Limestone surfaces) -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {
         projects.map((project, idx) => {
@@ -151,48 +151,55 @@ const projects =
           const isProjectActive = project.activo !== false;
           const hasExternalLink =
             isProjectActive && Boolean(project.link) && project.link !== "#";
+          const isStandout = idx === 0;
 
           return (
             <article
               data-animate="fade-up"
               data-animate-delay={String((idx % 3) * 120)}
-              class="group relative flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-gray-800/90 border border-gray-100 dark:border-gray-800/80 shadow-md hover:shadow-2xl hover:border-emamut-orange/30 transition-all duration-300 hover:-translate-y-2"
+              class:list={[
+                "group relative flex flex-col rounded-[40px] p-6 sm:p-8 transition-transform hover:-translate-y-1.5 duration-300",
+                isStandout
+                  ? "bg-limestone dark:bg-[#151415] border-2 border-ember"
+                  : "bg-limestone dark:bg-[#141314] border border-obsidian/10 dark:border-white/10",
+              ]}
             >
-              {/* Image with Zoom, Skeleton Shimmer & Hover Overlay */}
-              <div class="relative w-full h-52 overflow-hidden bg-gray-100 dark:bg-gray-950 skeleton-shimmer">
+              {/* Image with 28px rounded radius */}
+              <div class="relative w-full h-56 rounded-[28px] overflow-hidden bg-obsidian/5 dark:bg-obsidian skeleton-shimmer mb-6">
                 <img
                   src={imageUrl}
                   alt={project.title}
-                  class="lazy-img w-full h-full object-cover object-center group-hover:scale-108 transition-all duration-500 ease-out"
+                  class="lazy-img w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
                   loading="lazy"
                   decoding="async"
                   onload="this.classList.add('loaded')"
                 />
                 {hasExternalLink && (
-                  <div class="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-gray-950/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
+                  <div class="absolute inset-0 bg-obsidian/60 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
                     <a
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="w-12 h-12 rounded-full bg-emamut-orange text-white flex items-center justify-center shadow-lg shadow-orange-500/40 transform scale-75 group-hover:scale-100 transition-all duration-300 hover:bg-emamut-orange-dark hover:scale-110"
+                      class="px-5 py-2.5 rounded-full bg-ember hover:bg-ember-dark text-obsidian font-medium text-xs inline-flex items-center gap-2 transition-transform hover:scale-105"
                       aria-label={`Visitar sitio web de ${project.title}`}
                     >
-                      <Icon name="lucide:external-link" class="w-5 h-5" />
+                      <span>Ver Proyecto</span>
+                      <Icon name="lucide:external-link" class="w-3.5 h-3.5" />
                     </a>
                   </div>
                 )}
               </div>
 
               {/* Card Content */}
-              <div class="flex-1 p-6 flex flex-col justify-between space-y-4">
-                <div class="space-y-2">
-                  <h3 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-emamut-orange transition-colors duration-200">
+              <div class="flex-1 flex flex-col justify-between space-y-5">
+                <div class="space-y-3">
+                  <h3 class="display-title text-2xl sm:text-3xl uppercase text-obsidian dark:text-chalk group-hover:text-ember transition-colors">
                     {hasExternalLink ? (
                       <a
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="inline-flex items-center gap-1.5 hover:underline"
+                        class="inline-flex items-center gap-1.5"
                       >
                         {project.title}
                       </a>
@@ -200,16 +207,16 @@ const projects =
                       project.title
                     )}
                   </h3>
-                  <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                  <p class="text-sm text-obsidian/75 dark:text-limestone/75 leading-relaxed font-medium">
                     {project.description}
                   </p>
                 </div>
 
-                {/* Tags / Tech Badges */}
+                {/* Tags / Tech Badges (Sulfur Pills) */}
                 {project.tech && project.tech.length > 0 && (
-                  <div class="flex flex-wrap gap-2 pt-2 border-t border-gray-100 dark:border-gray-750">
+                  <div class="flex flex-wrap gap-2 pt-4 border-t border-dotted border-obsidian/15 dark:border-white/15">
                     {project.tech.map((t) => (
-                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-emamut-orange/10 text-emamut-orange dark:bg-emamut-orange/20 dark:text-emamut-orange-light transition-colors">
+                      <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-sulfur text-obsidian">
                         {t}
                       </span>
                     ))}

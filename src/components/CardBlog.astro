@@ -44,10 +44,10 @@ const imgSrc = thumbnail?.responsiveImage?.src || "/placeholder.svg";
 <article
   data-animate="fade-up"
   data-animate-delay={String(delay)}
-  class="group flex flex-col bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl border border-gray-100 dark:border-gray-700/60 hover:border-emamut-orange/30 transition-all duration-300 hover:-translate-y-2"
+  class="group flex flex-col bg-limestone dark:bg-[#141314] rounded-[40px] p-6 sm:p-8 border border-obsidian/10 dark:border-white/10 transition-transform hover:-translate-y-1.5 duration-300"
 >
   <div
-    class="relative w-full h-52 overflow-hidden bg-gray-100 dark:bg-gray-950 skeleton-shimmer"
+    class="relative w-full h-52 rounded-[28px] overflow-hidden bg-obsidian/5 dark:bg-obsidian skeleton-shimmer mb-6"
   >
     <a
       href={`/blog/${slug}`}
@@ -57,7 +57,7 @@ const imgSrc = thumbnail?.responsiveImage?.src || "/placeholder.svg";
       <img
         src={imgSrc}
         alt={thumbnail?.responsiveImage?.alt || title}
-        class="lazy-img w-full h-full object-cover group-hover:scale-108 transition-all duration-500 ease-out"
+        class="lazy-img w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
         loading="lazy"
         decoding="async"
         onload="this.classList.add('loaded')"
@@ -67,48 +67,44 @@ const imgSrc = thumbnail?.responsiveImage?.src || "/placeholder.svg";
       parsedTags.length > 0 ? (
         <div class="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10">
           {parsedTags.map((tag) => (
-            <span class="px-3 py-1 text-xs font-semibold rounded-full bg-emamut-orange text-white shadow-md">
+            <span class="px-3 py-1 text-xs font-medium rounded-full bg-sulfur text-obsidian">
               {tag}
             </span>
           ))}
         </div>
       ) : (
-        <span class="absolute top-3 left-3 px-3 py-1 text-xs font-semibold rounded-full bg-emamut-orange text-white shadow-md">
+        <span class="absolute top-3 left-3 px-3 py-1 text-xs font-medium rounded-full bg-sulfur text-obsidian">
           Artículo
         </span>
       )
     }
   </div>
 
-  <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-    <div class="space-y-2">
-      <h2
-        class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-emamut-orange transition-colors line-clamp-2"
-      >
+  <div class="flex-1 flex flex-col justify-between space-y-4">
+    <div class="space-y-3">
+      <h2 class="display-title text-2xl sm:text-3xl uppercase text-obsidian dark:text-chalk group-hover:text-ember transition-colors line-clamp-2">
         <a href={`/blog/${slug}`}>
           {title}
         </a>
       </h2>
-      <p
-        class="text-sm text-gray-600 dark:text-gray-300 line-clamp-3 leading-relaxed"
-      >
+      <p class="text-sm text-obsidian/75 dark:text-limestone/75 line-clamp-3 leading-relaxed font-medium">
         {plainText}
       </p>
     </div>
 
     <div
-      class="pt-4 border-t border-gray-100 dark:border-gray-700 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400"
+      class="pt-4 border-t border-dotted border-obsidian/15 dark:border-white/15 flex items-center justify-between text-xs text-obsidian/60 dark:text-limestone/60"
     >
-      <div class="flex items-center space-x-1.5">
-        <Icon name="lucide:user" class="w-3.5 h-3.5 text-emamut-orange" />
+      <div class="flex items-center space-x-1.5 font-medium">
+        <Icon name="lucide:user" class="w-3.5 h-3.5 text-ember" />
         <span>Emamut</span>
       </div>
       <a
         href={`/blog/${slug}`}
-        class="inline-flex items-center gap-1 font-semibold text-emamut-orange hover:text-emamut-orange-dark transition-colors"
+        class="inline-flex items-center gap-1.5 font-medium text-xs text-obsidian dark:text-limestone hover:text-ember dark:hover:text-ember transition-colors"
       >
-        <span>Leer más</span>
-        <Icon name="lucide:arrow-right" class="w-3.5 h-3.5" />
+        <span>Leer artículo</span>
+        <Icon name="lucide:arrow-right" class="w-3.5 h-3.5 text-ember" />
       </a>
     </div>
   </div>
