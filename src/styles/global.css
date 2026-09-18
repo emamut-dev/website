@@ -3,11 +3,32 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
+  /* Colors - Caldera Palette with Original Orange (#ff6b35) */
+  --color-ember: #ff6b35;
+  --color-ember-dark: #e55a2b;
+  --color-ember-light: #ff8a5c;
+  --color-plasma-violet: #524ae9;
+  --color-sulfur: #f5f28e;
+  --color-limestone: #f7f6f2;
+  --color-pumice: #e2e2df;
+  --color-obsidian: #070607;
+  --color-chalk: #ffffff;
+
+  /* Backward compatibility aliases */
   --color-emamut-orange: #ff6b35;
   --color-emamut-orange-dark: #e55a2b;
   --color-emamut-orange-light: #ff8a5c;
-  --color-emamut-gray: #111827;
-  --font-geist: "Geist", sans-serif;
+  --color-emamut-gray: #070607;
+
+  /* Typography */
+  --font-display: 'Bebas Neue', 'Anton', 'PP Neue Corp Compact', ui-sans-serif, sans-serif;
+  --font-body: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-dm-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+
+  /* Radii */
+  --radius-card: 40px;
+  --radius-input: 100px;
+  --radius-pill: 800px;
 }
 
 @layer base {
@@ -16,7 +37,13 @@
   }
 
   body {
-    font-family: var(--font-geist);
+    font-family: var(--font-body);
+    font-weight: 500;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+    letter-spacing: 0.02em;
   }
 }
 
@@ -173,3 +200,57 @@
     animation: none !important;
   }
 }
+
+/* Caldera Signature Motifs */
+
+/* Halftone dot pattern */
+.caldera-halftone {
+  background-color: var(--color-plasma-violet);
+  background-image:
+    radial-gradient(var(--color-ember) 18%, transparent 20%),
+    radial-gradient(var(--color-ember) 18%, transparent 20%),
+    linear-gradient(135deg, #524ae9 0%, #7d3de0 45%, #ff6b35 100%);
+  background-position: 0 0, 8px 8px, 0 0;
+  background-size: 16px 16px, 16px 16px, 100% 100%;
+}
+
+.caldera-halftone-pattern {
+  background-image: radial-gradient(var(--color-ember) 2px, transparent 2.2px);
+  background-size: 14px 14px;
+}
+
+.caldera-halftone-white {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.45) 2px, transparent 2.2px);
+  background-size: 14px 14px;
+}
+
+/* Dotted dividers */
+.caldera-dotted-divider {
+  border: 0;
+  border-top: 1.5px dotted var(--color-obsidian);
+  opacity: 0.35;
+}
+
+:is(.dark) .caldera-dotted-divider {
+  border-top-color: var(--color-chalk);
+  opacity: 0.25;
+}
+
+.caldera-dotted-divider-v {
+  border: 0;
+  border-left: 1.5px dotted var(--color-obsidian);
+  opacity: 0.35;
+}
+
+:is(.dark) .caldera-dotted-divider-v {
+  border-left-color: var(--color-chalk);
+  opacity: 0.25;
+}
+
+/* Caldera architectural type utility */
+.display-title {
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+  line-height: 0.94;
+}
+

@@ -4,119 +4,138 @@ import ThemeToggle from "./ThemeToggle.astro";
 ---
 
 <header
-  class="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 transition-colors duration-300"
+  class="fixed top-0 left-0 right-0 z-50 pt-3 sm:pt-4 px-3 sm:px-6 lg:px-8 pointer-events-none transition-all duration-300"
 >
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-20">
-      <!-- Logo de Emamut -->
+  <div
+    class="max-w-7xl mx-auto bg-limestone/95 dark:bg-[#141314]/95 backdrop-blur-md rounded-full border border-obsidian/10 dark:border-white/10 px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between pointer-events-auto transition-colors"
+  >
+    <!-- Logo de Emamut -->
+    <a
+      href="/#hero"
+      class="flex items-center gap-2 focus:outline-none shrink-0"
+      aria-label="Ir al inicio de Emamut"
+    >
+      <img
+        src="/logo-emamut.png"
+        alt="Emamut Logo"
+        class="h-8 sm:h-10 w-auto dark:brightness-0 dark:invert transition-all"
+        loading="eager"
+      />
+    </a>
+
+    <!-- Navegación Desktop -->
+    <nav
+      class="hidden md:flex items-center space-x-2 lg:space-x-4"
+      aria-label="Navegación principal"
+    >
       <a
         href="/#hero"
-        class="flex items-center focus:outline-none"
-        aria-label="Ir al inicio de Emamut"
+        class="nav-link-animated px-3 py-1.5 text-base font-medium text-obsidian dark:text-limestone hover:text-ember transition-colors"
       >
-        <img
-          src="/logo-emamut.png"
-          alt="Emamut Logo"
-          class="h-8 md:h-16 w-auto dark:brightness-0 dark:invert transition-all"
-          loading="eager"
-        />
+        Inicio
       </a>
-
-      <!-- Navegación Desktop -->
-      <nav
-        class="hidden md:flex items-center space-x-8"
-        aria-label="Navegación principal"
+      <a
+        href="/#portfolio"
+        class="nav-link-animated px-3 py-1.5 text-base font-medium text-obsidian dark:text-limestone hover:text-ember transition-colors"
       >
-        <a
-          href="/#hero"
-          class="nav-link-animated text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-emamut-orange dark:hover:text-emamut-orange transition-colors"
-        >
-          Inicio
-        </a>
-        <a
-          href="/#portfolio"
-          class="nav-link-animated text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-emamut-orange dark:hover:text-emamut-orange transition-colors"
-        >
-          Portfolio
-        </a>
-        <a
-          href="/#blog"
-          class="nav-link-animated text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-emamut-orange dark:hover:text-emamut-orange transition-colors"
-        >
-          Blog
-        </a>
-        <a
-          href="/#contact"
-          class="nav-link-animated text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-emamut-orange dark:hover:text-emamut-orange transition-colors"
-        >
-          Contacto
-        </a>
-        <ThemeToggle />
-      </nav>
+        Portfolio
+      </a>
+      <a
+        href="/#blog"
+        class="nav-link-animated px-3 py-1.5 text-base font-medium text-obsidian dark:text-limestone hover:text-ember transition-colors"
+      >
+        Blog
+      </a>
+      <a
+        href="/#contact"
+        class="nav-link-animated px-3 py-1.5 text-base font-medium text-obsidian dark:text-limestone hover:text-ember transition-colors"
+      >
+        Contacto
+      </a>
+    </nav>
 
-      <!-- Botones Mobile: Theme Toggle y Menú Hamburguesa -->
-      <div class="flex items-center space-x-2 md:hidden">
-        <ThemeToggle />
-        <button
-          type="button"
-          id="mobile-menu-btn"
-          class="p-2 rounded-xl text-gray-700 dark:text-gray-300 hover:text-emamut-orange dark:hover:text-emamut-orange hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-emamut-orange/50 cursor-pointer"
-          aria-label="Abrir menú de navegación"
-          aria-expanded="false"
-          aria-controls="mobile-menu"
-        >
-          <span id="menu-icon-open" class="block">
-            <Icon name="lucide:menu" class="w-6 h-6" />
-          </span>
-          <span id="menu-icon-close" class="hidden">
-            <Icon name="lucide:x" class="w-6 h-6" />
-          </span>
-        </button>
-      </div>
+    <!-- Acciones Desktop: Dotted Divider, ThemeToggle & CTA -->
+    <div class="hidden md:flex items-center space-x-4">
+      <span class="h-6 w-0 border-l-[1.5px] border-dotted border-obsidian/30 dark:border-white/30" aria-hidden="true"></span>
+      <ThemeToggle />
+      <a
+        href="#contact"
+        class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-ember hover:bg-ember-dark text-obsidian text-sm font-medium transition-transform hover:scale-105"
+      >
+        Hablemos
+      </a>
+    </div>
+
+    <!-- Botones Mobile: Theme Toggle y Menú Hamburguesa -->
+    <div class="flex items-center space-x-2 md:hidden">
+      <ThemeToggle />
+      <button
+        type="button"
+        id="mobile-menu-btn"
+        class="p-2 rounded-full text-obsidian dark:text-limestone hover:text-ember hover:bg-obsidian/5 dark:hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-ember cursor-pointer"
+        aria-label="Abrir menú de navegación"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <span id="menu-icon-open" class="block">
+          <Icon name="lucide:menu" class="w-5 h-5" />
+        </span>
+        <span id="menu-icon-close" class="hidden">
+          <Icon name="lucide:x" class="w-5 h-5" />
+        </span>
+      </button>
     </div>
   </div>
 
-  <!-- Panel Desplegable Móvil -->
+  <!-- Panel Desplegable Móvil (Limestone card, 32px radius) -->
   <div
     id="mobile-menu"
-    class="hidden md:hidden border-b border-gray-200 dark:border-gray-800 bg-white/98 dark:bg-gray-900/98 backdrop-blur-xl px-4 pt-3 pb-6 space-y-3 transition-all"
+    class="hidden md:hidden max-w-7xl mx-auto mt-2 pointer-events-auto bg-limestone/98 dark:bg-[#141314]/98 backdrop-blur-xl rounded-[32px] border border-obsidian/10 dark:border-white/10 p-5 space-y-3 transition-all"
   >
     <a
       href="/#hero"
-      class="mobile-nav-link block px-3 py-2.5 rounded-xl text-base font-medium text-gray-800 dark:text-gray-200 hover:bg-emamut-orange/10 hover:text-emamut-orange dark:hover:text-emamut-orange transition-colors"
+      class="mobile-nav-link block px-4 py-2.5 rounded-full text-base font-medium text-obsidian dark:text-limestone hover:bg-ember/15 hover:text-ember transition-colors"
     >
       Inicio
     </a>
     <a
       href="/#portfolio"
-      class="mobile-nav-link block px-3 py-2.5 rounded-xl text-base font-medium text-gray-800 dark:text-gray-200 hover:bg-emamut-orange/10 hover:text-emamut-orange dark:hover:text-emamut-orange transition-colors"
+      class="mobile-nav-link block px-4 py-2.5 rounded-full text-base font-medium text-obsidian dark:text-limestone hover:bg-ember/15 hover:text-ember transition-colors"
     >
       Portfolio
     </a>
     <a
       href="/#blog"
-      class="mobile-nav-link block px-3 py-2.5 rounded-xl text-base font-medium text-gray-800 dark:text-gray-200 hover:bg-emamut-orange/10 hover:text-emamut-orange dark:hover:text-emamut-orange transition-colors"
+      class="mobile-nav-link block px-4 py-2.5 rounded-full text-base font-medium text-obsidian dark:text-limestone hover:bg-ember/15 hover:text-ember transition-colors"
     >
       Blog
     </a>
     <a
       href="/#contact"
-      class="mobile-nav-link block px-3 py-2.5 rounded-xl text-base font-medium text-gray-800 dark:text-gray-200 hover:bg-emamut-orange/10 hover:text-emamut-orange dark:hover:text-emamut-orange transition-colors"
+      class="mobile-nav-link block px-4 py-2.5 rounded-full text-base font-medium text-obsidian dark:text-limestone hover:bg-ember/15 hover:text-ember transition-colors"
     >
       Contacto
     </a>
 
-    <!-- Fila de cambio de tema dentro del menú desplegable -->
+    <!-- Fila de cambio de tema y botón CTA dentro del menú móvil -->
     <div
-      class="pt-3 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between px-3"
+      class="pt-3 border-t border-dotted border-obsidian/20 dark:border-white/20 flex items-center justify-between px-2"
     >
-      <span class="text-sm font-medium text-gray-600 dark:text-gray-400"
+      <span class="text-sm font-medium text-obsidian/70 dark:text-limestone/70"
         >Tema del sitio</span
       >
       <ThemeToggle
         showLabel={true}
-        class="bg-gray-100 dark:bg-gray-800 px-3 py-1.5"
+        class="bg-obsidian/5 dark:bg-white/10 px-3 py-1.5 rounded-full"
       />
+    </div>
+    <div class="pt-2">
+      <a
+        href="#contact"
+        class="mobile-nav-link w-full inline-flex items-center justify-center px-6 py-3 rounded-full bg-ember hover:bg-ember-dark text-obsidian text-sm font-medium transition-all text-center"
+      >
+        Hablemos
+      </a>
     </div>
   </div>
 </header>

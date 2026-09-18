@@ -70,24 +70,24 @@ const realPosts = posts.map((post) => {
 
 <section
   id="blog"
-  class="py-20 bg-gray-50 dark:bg-gray-800/50 transition-colors"
+  class="py-20 bg-pumice dark:bg-obsidian transition-colors"
 >
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
     <!-- Header -->
-    <div class="text-center max-w-3xl mx-auto mb-16" data-animate="fade-up">
+    <div class="text-center max-w-3xl mx-auto space-y-4" data-animate="fade-up">
       <div
-        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emamut-orange/10 text-emamut-orange text-xs font-semibold tracking-wider uppercase mb-3"
+        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sulfur text-obsidian text-xs font-semibold tracking-wider uppercase"
       >
-        Artículos & Recursos
+        Artículos &middot; Recursos Técnicos
       </div>
       <h2
-        class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white tracking-tight"
+        class="display-title text-4xl sm:text-6xl lg:text-7xl uppercase text-obsidian dark:text-chalk"
       >
         Blog Técnico
       </h2>
-      <p class="mt-4 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-        Mantente al día con las últimas tendencias tecnológicas, tutoriales y
-        conocimientos de nuestro equipo de desarrollo.
+      <p class="text-base sm:text-lg text-obsidian/80 dark:text-limestone/80 leading-relaxed font-medium">
+        Mantente al día con nuestras guías sobre arquitectura moderna, desarrollo
+        de software escalable y estrategias tecnológicas para empresas.
       </p>
     </div>
 
@@ -112,10 +112,10 @@ const realPosts = posts.map((post) => {
               <article
                 data-animate="fade-up"
                 data-animate-delay={String((idx % 3) * 120)}
-                class="group flex flex-col bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl border border-gray-100 dark:border-gray-700/60 hover:border-emamut-orange/30 transition-all duration-300 hover:-translate-y-2"
+                class="group flex flex-col bg-limestone dark:bg-[#141314] rounded-[40px] p-6 sm:p-8 border border-obsidian/10 dark:border-white/10 transition-transform hover:-translate-y-1.5 duration-300"
               >
-                {/* Image with Tags Badge & Skeleton Shimmer */}
-                <div class="relative w-full h-48 overflow-hidden bg-gray-100 dark:bg-gray-950 skeleton-shimmer">
+                {/* Image with 28px radius */}
+                <div class="relative w-full h-52 rounded-[28px] overflow-hidden bg-obsidian/5 dark:bg-obsidian skeleton-shimmer mb-6">
                   <a
                     href={postHref}
                     class="block w-full h-full"
@@ -124,7 +124,7 @@ const realPosts = posts.map((post) => {
                     <img
                       src={imageSrc}
                       alt={post.title}
-                      class="lazy-img w-full h-full object-cover group-hover:scale-108 transition-all duration-500 ease-out"
+                      class="lazy-img w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                       loading="lazy"
                       decoding="async"
                       onload="this.classList.add('loaded')"
@@ -133,14 +133,14 @@ const realPosts = posts.map((post) => {
                   {post.tags && post.tags.length > 0 ? (
                     <div class="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10">
                       {post.tags.map((t) => (
-                        <span class="px-3 py-1 text-xs font-semibold rounded-full bg-emamut-orange text-white shadow-md">
+                        <span class="px-3 py-1 text-xs font-medium rounded-full bg-sulfur text-obsidian">
                           {t}
                         </span>
                       ))}
                     </div>
                   ) : (
                     post.category && (
-                      <span class="absolute top-3 left-3 px-3 py-1 text-xs font-semibold rounded-full bg-emamut-orange text-white shadow-md">
+                      <span class="absolute top-3 left-3 px-3 py-1 text-xs font-medium rounded-full bg-sulfur text-obsidian">
                         {post.category}
                       </span>
                     )
@@ -148,31 +148,31 @@ const realPosts = posts.map((post) => {
                 </div>
 
                 {/* Content */}
-                <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-                  <div class="space-y-2">
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-emamut-orange transition-colors duration-200 line-clamp-2">
+                <div class="flex-1 flex flex-col justify-between space-y-4">
+                  <div class="space-y-3">
+                    <h3 class="display-title text-2xl sm:text-3xl uppercase text-obsidian dark:text-chalk group-hover:text-ember transition-colors line-clamp-2">
                       <a href={postHref}>{post.title}</a>
                     </h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-300 line-clamp-3 leading-relaxed">
+                    <p class="text-sm text-obsidian/75 dark:text-limestone/75 line-clamp-3 leading-relaxed font-medium">
                       {post.excerpt}
                     </p>
                   </div>
 
                   {/* Author / Date / Read time */}
-                  <div class="pt-4 border-t border-gray-100 dark:border-gray-700 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
-                    <div class="flex items-center space-x-1.5">
+                  <div class="pt-4 border-t border-dotted border-obsidian/15 dark:border-white/15 flex items-center justify-between text-xs text-obsidian/60 dark:text-limestone/60">
+                    <div class="flex items-center space-x-1.5 font-medium">
                       <Icon
                         name="lucide:user"
-                        class="w-3.5 h-3.5 text-emamut-orange"
+                        class="w-3.5 h-3.5 text-ember"
                       />
                       <span class="truncate max-w-[100px]">{post.author}</span>
                     </div>
-                    <div class="flex items-center space-x-3">
+                    <div class="flex items-center space-x-3 font-medium">
                       <div class="flex items-center space-x-1">
                         <Icon name="lucide:calendar" class="w-3.5 h-3.5" />
                         <span>{post.date}</span>
                       </div>
-                      <span>•</span>
+                      <span>&middot;</span>
                       <span>{post.readTime}</span>
                     </div>
                   </div>
@@ -184,30 +184,27 @@ const realPosts = posts.map((post) => {
       ) : (
         <div
           data-animate="fade-up"
-          class="text-center py-16 bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-100 dark:border-gray-700 max-w-lg mx-auto"
+          class="text-center py-16 bg-limestone dark:bg-[#141314] rounded-[40px] p-8 border border-obsidian/10 dark:border-white/10 max-w-lg mx-auto"
         >
-          <p class="text-gray-600 dark:text-gray-300">
+          <p class="text-obsidian/75 dark:text-limestone/75 font-medium">
             Pronto publicaremos nuevos artículos.
           </p>
         </div>
       )
     }
 
-    <!-- CTA Ver todos -->
+    <!-- CTA Ver todos (Secondary Pill Button) -->
     <div
-      class="text-center mt-12"
+      class="text-center pt-4"
       data-animate="fade-up"
       data-animate-delay="150"
     >
       <a
         href="/blog"
-        class="group inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-sm border-2 border-emamut-orange text-emamut-orange hover:bg-emamut-orange hover:text-white dark:border-emamut-orange dark:text-emamut-orange hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
+        class="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-full font-medium text-base border-[1.5px] border-obsidian dark:border-limestone text-obsidian dark:text-limestone hover:bg-obsidian hover:text-chalk dark:hover:bg-limestone dark:hover:text-obsidian transition-colors"
       >
         <span>Ver Todos los Artículos</span>
-        <Icon
-          name="lucide:arrow-right"
-          class="w-4 h-4 group-hover:translate-x-1 transition-transform"
-        />
+        <Icon name="lucide:arrow-right" class="w-4 h-4" />
       </a>
     </div>
   </div>
