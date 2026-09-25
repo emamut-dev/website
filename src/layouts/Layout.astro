@@ -101,12 +101,12 @@ import Footer from "../components/Footer.astro";
     </main>
     <Footer />
 
-    <!-- Botón flotante para volver arriba (Caldera unshadowed pill) -->
+    <!-- Botón flotante para volver arriba (Contraste universal y backdrop blur) -->
     <button
       id="back-to-top"
       type="button"
       aria-label="Volver arriba"
-      class="fixed bottom-6 right-6 z-40 p-3.5 rounded-full bg-ember hover:bg-ember-dark text-obsidian border border-obsidian/20 opacity-0 translate-y-6 pointer-events-none transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-ember cursor-pointer"
+      class="fixed bottom-6 right-6 z-40 p-3.5 rounded-full bg-obsidian/90 dark:bg-limestone text-chalk dark:text-obsidian border border-white/20 dark:border-obsidian/20 shadow-lg opacity-0 translate-y-6 pointer-events-none transition-all duration-300 hover:scale-105 backdrop-blur-md focus:outline-none focus:ring-2 focus:ring-ember cursor-pointer"
     >
       <svg
         class="w-5 h-5"
@@ -155,7 +155,8 @@ import Footer from "../components/Footer.astro";
           }
 
           if (backToTop) {
-            if (scrollTop > 350) {
+            const threshold = Math.max(500, window.innerHeight * 0.75);
+            if (scrollTop > threshold) {
               backToTop.classList.remove(
                 "opacity-0",
                 "translate-y-6",
