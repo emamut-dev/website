@@ -2,8 +2,8 @@
 import { Icon } from "astro-icon/components";
 
 const stats = [
-  { label: "CÓDIGO A MEDIDA", value: "100%", isEmber: true },
-  { label: "DISPONIBILIDAD Y RENDIMIENTO", value: "99.9%", isEmber: true },
+  { label: "CÓDIGO A MEDIDA", value: "100%", isEmber: false },
+  { label: "DISPONIBILIDAD Y RENDIMIENTO", value: "99.9%", isEmber: false },
   { label: "PROYECTOS DESARROLLADOS", value: "+50", isEmber: true },
   { label: "SOPORTE Y ARQUITECTURA", value: "24/7", isEmber: false },
 ];
@@ -143,9 +143,9 @@ const techStack = [
       </div>
     </div>
 
-    <!-- Caldera Stat Row (Prompt #2 from DESIGN.md: Four cards, 40px radius, 40px padding) -->
+    <!-- Caldera Stat Row (Responsive Bento 2x2 on mobile, 4-col on desktop) -->
     <div
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+      class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6"
       data-animate="fade-up"
       data-animate-delay="150"
     >
@@ -153,21 +153,21 @@ const techStack = [
         stats.map((stat) => (
           <div
             class:list={[
-              "rounded-[40px] p-8 md:p-10 flex flex-col justify-between min-h-[200px] transition-transform hover:-translate-y-1",
+              "rounded-3xl sm:rounded-[40px] p-4.5 sm:p-8 md:p-10 flex flex-col justify-between min-h-[135px] sm:min-h-[190px] transition-transform hover:-translate-y-1",
               stat.isEmber
-                ? "bg-ember text-chalk"
+                ? "bg-ember text-chalk shadow-sm"
                 : "bg-limestone dark:bg-[#141314] text-obsidian dark:text-chalk border border-obsidian/10 dark:border-white/10",
             ]}
           >
             <span
               class:list={[
-                "text-xs font-semibold tracking-wider uppercase font-body",
-                stat.isEmber ? "text-chalk/85" : "text-obsidian/70 dark:text-limestone/70",
+                "text-[11px] sm:text-xs font-semibold tracking-wider uppercase font-body leading-tight",
+                stat.isEmber ? "text-chalk" : "text-obsidian/70 dark:text-limestone/70",
               ]}
             >
               {stat.label}
             </span>
-            <span class="display-title text-6xl sm:text-7xl lg:text-[76px] leading-none pt-4">
+            <span class="display-title text-4xl sm:text-6xl lg:text-[76px] leading-none pt-2 sm:pt-4">
               {stat.value}
             </span>
           </div>
