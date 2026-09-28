@@ -5,6 +5,7 @@ interface PortfolioItem {
   title: string;
   link: string;
   activo?: boolean;
+  active?: boolean;
   image?: {
     url: string;
   };
@@ -54,6 +55,7 @@ const fallbackProjects: PortfolioItem[] = [
     tech: ["React", "Node.js", "MongoDB"],
     link: "#",
     image: { url: "/placeholder.svg" },
+    activo: true,
   },
   {
     title: "App Móvil Corporativa",
@@ -148,10 +150,11 @@ const projects =
       {
         projects.map((project, idx) => {
           const imageUrl = project.image?.url || "/placeholder.svg";
-          const isProjectActive = project.activo !== false;
+          const isActive = project.activo ?? project.active;
+          const isProjectActive = isActive !== false && isActive !== "false";
           const hasExternalLink =
             isProjectActive && Boolean(project.link) && project.link !== "#";
-          const isStandout = idx === 0;
+          const isStandout = isActive === true || isActive === "true";
 
           return (
             <article
