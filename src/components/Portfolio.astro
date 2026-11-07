@@ -21,17 +21,6 @@ interface Props {
 
 const { items = [] } = Astro.props;
 
-// Categorías / tags dinámicos de respaldo si no vienen especificados
-const defaultTechSets = [
-  ["Astro", "Tailwind CSS", "SEO"],
-  ["E-Commerce", "React", "Stripe"],
-  ["Next.js", "TypeScript", "UI/UX"],
-  ["WordPress", "Web Design", "CMS"],
-  ["Desarrollo Web", "Optimización", "Branding"],
-  ["Web App", "Responsive", "Performance"],
-  ["Full Stack", "Cloud", "API"],
-];
-
 // Parser para procesar el campo tags (soporta string separado por comas o array)
 const parseTags = (tags?: string[] | string): string[] => {
   if (!tags) return [];
@@ -46,80 +35,22 @@ const parseTags = (tags?: string[] | string): string[] => {
   return [];
 };
 
-// Si DatoCMS retorna proyectos, los mapeamos; de lo contrario usamos los del diseño
-const fallbackProjects: PortfolioItem[] = [
-  {
-    title: "E-commerce Moderno",
-    description:
-      "Plataforma de comercio electrónico con integración de pagos y gestión de inventario en tiempo real.",
-    tech: ["React", "Node.js", "MongoDB"],
-    link: "#",
-    image: { url: "/placeholder.svg" },
-    activo: true,
-  },
-  {
-    title: "App Móvil Corporativa",
-    description:
-      "Aplicación para gestión empresarial con sincronización en tiempo real y modo offline.",
-    tech: ["React Native", "Firebase", "TypeScript"],
-    link: "#",
-    image: { url: "/placeholder.svg" },
-  },
-  {
-    title: "Dashboard Analytics",
-    description:
-      "Panel de control con visualización de datos, métricas clave y reportes interactivos.",
-    tech: ["Vue.js", "D3.js", "Python"],
-    link: "#",
-    image: { url: "/placeholder.svg" },
-  },
-  {
-    title: "Sistema CRM Personalizado",
-    description:
-      "Sistema integral de gestión de clientes, prospectos y automatización de procesos.",
-    tech: ["Angular", "Laravel", "MySQL"],
-    link: "#",
-    image: { url: "/placeholder.svg" },
-  },
-  {
-    title: "Plataforma Educativa",
-    description:
-      "Plataforma LMS interactiva con videoconferencias y seguimiento de progreso formativo.",
-    tech: ["Next.js", "WebRTC", "PostgreSQL"],
-    link: "#",
-    image: { url: "/placeholder.svg" },
-  },
-  {
-    title: "API Microservicios",
-    description:
-      "Arquitectura escalable de microservicios de alto rendimiento para aplicaciones empresariales.",
-    tech: ["Docker", "Kubernetes", "Go"],
-    link: "#",
-    image: { url: "/placeholder.svg" },
-  },
-];
+// Mapeo exclusivo de proyectos reales de DatoCMS (sin datos dummies)
+const projects = (items || []).map((item) => {
+  const parsedTags = parseTags(item.tags);
+  const tech =
+    parsedTags.length > 0
+      ? parsedTags
+      : Array.isArray(item.tech)
+        ? item.tech
+        : [];
 
-const projects =
-  items.length > 0
-    ? items.map((item, idx) => {
-        const parsedTags = parseTags(item.tags);
-        const tech =
-          parsedTags.length > 0
-            ? parsedTags
-            : item.tech && item.tech.length > 0
-              ? item.tech
-              : defaultTechSets[idx % defaultTechSets.length];
-
-        return {
-          ...item,
-          description:
-            item.caption ||
-            item.description ||
-            "Solución digital a medida desarrollada para potenciar el alcance de la marca.",
-          tech,
-        };
-      })
-    : fallbackProjects;
+  return {
+    ...item,
+    description: item.caption || item.description || "",
+    tech,
+  };
+});
 ---
 
 <section
@@ -146,90 +77,103 @@ const projects =
     </div>
 
     <!-- Projects Grid (40px cards, flat unshadowed Limestone surfaces) -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {
-        projects.map((project, idx) => {
-          const imageUrl = project.image?.url || "/placeholder.svg";
-          const isActive = project.activo ?? project.active;
-          const isProjectActive = isActive !== false && isActive !== "false";
-          const hasExternalLink =
-            isProjectActive && Boolean(project.link) && project.link !== "#";
-          const isStandout = isActive === true || isActive === "true";
+    {
+      projects.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, idx) => {
+            const imageUrl = project.image?.url || "/placeholder.svg";
+            const isActive = project.activo ?? project.active;
+            const isProjectActive = isActive !== false && isActive !== "false";
+            const hasExternalLink =
+              isProjectActive && Boolean(project.link) && project.link !== "#";
+            const isStandout = isActive === true || isActive === "true";
 
-          return (
-            <article
-              data-animate="fade-up"
-              data-animate-delay={String((idx % 3) * 120)}
-              class:list={[
-                "group relative flex flex-col rounded-[40px] p-6 sm:p-8 transition-transform hover:-translate-y-1.5 duration-300",
-                isStandout
-                  ? "bg-limestone dark:bg-[#151415] border-2 border-ember"
-                  : "bg-limestone dark:bg-[#141314] border border-obsidian/10 dark:border-white/10",
-              ]}
-            >
-              {/* Image with 28px rounded radius */}
-              <div class="relative w-full h-56 rounded-[28px] overflow-hidden bg-obsidian/5 dark:bg-obsidian skeleton-shimmer mb-6">
-                <img
-                  src={imageUrl}
-                  alt={project.title}
-                  class="lazy-img w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
-                  loading="lazy"
-                  decoding="async"
-                  onload="this.classList.add('loaded')"
-                />
-                {hasExternalLink && (
-                  <div class="absolute inset-0 bg-obsidian/60 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="px-5 py-2.5 rounded-full bg-ember hover:bg-ember-dark text-obsidian font-medium text-xs inline-flex items-center gap-2 transition-transform hover:scale-105"
-                      aria-label={`Visitar sitio web de ${project.title}`}
-                    >
-                      <span>Ver Proyecto</span>
-                      <Icon name="lucide:external-link" class="w-3.5 h-3.5" />
-                    </a>
-                  </div>
-                )}
-              </div>
-
-              {/* Card Content */}
-              <div class="flex-1 flex flex-col justify-between space-y-5">
-                <div class="space-y-3">
-                  <h3 class="display-title text-2xl sm:text-3xl uppercase text-obsidian dark:text-chalk group-hover:text-ember transition-colors">
-                    {hasExternalLink ? (
+            return (
+              <article
+                data-animate="fade-up"
+                data-animate-delay={String((idx % 3) * 120)}
+                class:list={[
+                  "group relative flex flex-col rounded-[40px] p-6 sm:p-8 transition-transform hover:-translate-y-1.5 duration-300",
+                  isStandout
+                    ? "bg-limestone dark:bg-[#151415] border-2 border-ember"
+                    : "bg-limestone dark:bg-[#141314] border border-obsidian/10 dark:border-white/10",
+                ]}
+              >
+                {/* Image with 28px rounded radius */}
+                <div class="relative w-full h-56 rounded-[28px] overflow-hidden bg-obsidian/5 dark:bg-obsidian skeleton-shimmer mb-6">
+                  <img
+                    src={imageUrl}
+                    alt={project.title}
+                    class="lazy-img w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+                    loading="lazy"
+                    decoding="async"
+                    onload="this.classList.add('loaded')"
+                  />
+                  {hasExternalLink && (
+                    <div class="absolute inset-0 bg-obsidian/60 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
                       <a
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="inline-flex items-center gap-1.5"
+                        class="px-5 py-2.5 rounded-full bg-ember hover:bg-ember-dark text-obsidian font-medium text-xs inline-flex items-center gap-2 transition-transform hover:scale-105"
+                        aria-label={`Visitar sitio web de ${project.title}`}
                       >
-                        {project.title}
+                        <span>Ver Proyecto</span>
+                        <Icon name="lucide:external-link" class="w-3.5 h-3.5" />
                       </a>
-                    ) : (
-                      project.title
-                    )}
-                  </h3>
-                  <p class="text-sm text-obsidian/75 dark:text-limestone/75 leading-relaxed font-medium">
-                    {project.description}
-                  </p>
+                    </div>
+                  )}
                 </div>
 
-                {/* Tags / Tech Badges (Sulfur Pills) */}
-                {project.tech && project.tech.length > 0 && (
-                  <div class="flex flex-wrap gap-2 pt-4 border-t border-dotted border-obsidian/15 dark:border-white/15">
-                    {project.tech.map((t) => (
-                      <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-sulfur text-obsidian">
-                        {t}
-                      </span>
-                    ))}
+                {/* Card Content */}
+                <div class="flex-1 flex flex-col justify-between space-y-5">
+                  <div class="space-y-3">
+                    <h3 class="display-title text-2xl sm:text-3xl uppercase text-obsidian dark:text-chalk group-hover:text-ember transition-colors">
+                      {hasExternalLink ? (
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="inline-flex items-center gap-1.5"
+                        >
+                          {project.title}
+                        </a>
+                      ) : (
+                        project.title
+                      )}
+                    </h3>
+                    {project.description && (
+                      <p class="text-sm text-obsidian/75 dark:text-limestone/75 leading-relaxed font-medium">
+                        {project.description}
+                      </p>
+                    )}
                   </div>
-                )}
-              </div>
-            </article>
-          );
-        })
-      }
-    </div>
+
+                  {/* Tags / Tech Badges (Sulfur Pills) */}
+                  {project.tech && project.tech.length > 0 && (
+                    <div class="flex flex-wrap gap-2 pt-4 border-t border-dotted border-obsidian/15 dark:border-white/15">
+                      {project.tech.map((t) => (
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-sulfur text-obsidian">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      ) : (
+        <div
+          data-animate="fade-up"
+          class="text-center py-16 bg-limestone dark:bg-[#141314] rounded-[40px] p-8 border border-obsidian/10 dark:border-white/10 max-w-lg mx-auto"
+        >
+          <p class="text-obsidian/75 dark:text-limestone/75 font-medium">
+            No hay proyectos disponibles en este momento.
+          </p>
+        </div>
+      )
+    }
   </div>
 </section>
